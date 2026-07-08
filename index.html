@@ -197,6 +197,59 @@
     .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
     .badge{font-size:10px;font-weight:900;color:#8a5200;background:#fff1dd;border-radius:7px;padding:5px 7px}
 
+    .photo-strip{
+      display:grid;
+      grid-template-columns:1.25fr 1fr;
+      gap:10px;
+    }
+    .photo-card{
+      position:relative;
+      min-height:142px;
+      border-radius:var(--radius);
+      overflow:hidden;
+      background:#d8e4ef;
+      box-shadow:0 8px 22px rgba(14,42,71,.09);
+    }
+    .photo-card img{
+      width:100%;
+      height:100%;
+      min-height:142px;
+      object-fit:cover;
+      display:block;
+    }
+    .photo-card small{
+      position:absolute;
+      left:10px;
+      right:10px;
+      bottom:10px;
+      background:rgba(14,42,71,.82);
+      color:#fff;
+      border-radius:9px;
+      padding:7px 8px;
+      font-weight:800;
+      font-size:11px;
+      line-height:1.25;
+    }
+    .photo-stack{display:grid;gap:10px}
+    .photo-stack .photo-card{min-height:66px}
+    .photo-stack .photo-card img{min-height:66px}
+
+    .link-list{display:grid;gap:9px}
+    .site-link{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:12px;
+      color:var(--ink);
+    }
+    .site-link b{display:block;font-size:13px}
+    .site-link small{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.3}
+    .site-link span{font-size:18px;color:var(--orange);font-weight:900}
+
     .subtop{
       background:var(--navy);
       color:#fff;
@@ -251,6 +304,49 @@
       margin-top:16px;
     }
     .summary b{color:#ffc46b}
+
+    .mini-steps{
+      display:grid;
+      grid-template-columns:1fr;
+      gap:8px;
+      margin-bottom:16px;
+    }
+    .mini-step{
+      display:flex;
+      gap:10px;
+      align-items:flex-start;
+      background:#fff;
+      border:1px solid var(--line);
+      border-radius:12px;
+      padding:11px 12px;
+    }
+    .mini-step span{
+      width:24px;
+      height:24px;
+      border-radius:50%;
+      display:grid;
+      place-items:center;
+      flex:none;
+      background:#fff1dd;
+      color:#7a4900;
+      font-weight:900;
+      font-size:12px;
+    }
+    .mini-step b{display:block;font-size:13px}
+    .mini-step small{display:block;color:var(--muted);line-height:1.35;margin-top:2px}
+
+    .account-row{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      border-bottom:1px solid var(--line);
+      padding:12px 0;
+    }
+    .account-row:last-child{border-bottom:0}
+    .account-row b{display:block}
+    .account-row small{display:block;color:var(--muted);margin-top:3px;line-height:1.35}
+    .account-row button{flex:none}
 
     .timeline{padding:18px}
     .step-card{
@@ -373,7 +469,7 @@
           <button class="quick orange" onclick="openRequest('Diagnostico con fotos')"><b>Diagnostico</b><small>Formulario guiado con fotos y sintomas.</small></button>
           <button class="quick sky" onclick="showView('certs','nav-certs')"><b>Certificados</b><small>Pozo a tierra, luxometria e informes.</small></button>
           <button class="quick" onclick="showView('track','nav-orders')"><b>Pedido activo</b><small>Estado, tecnico asignado y cierre.</small></button>
-          <button class="quick" onclick="showToast('Cuenta corporativa: hoteles, bancos, comercios e instituciones.')"><b>Empresas</b><small>Mantenimiento programado y trazabilidad.</small></button>
+          <button class="quick" onclick="showView('account','nav-account')"><b>Empresas</b><small>Mantenimiento programado y trazabilidad.</small></button>
         </div>
       </section>
 
@@ -382,9 +478,40 @@
           <div class="avatar">JZ</div>
           <div>
             <b>Respaldo tecnico de ENERGETICOS</b>
-            <small>Dirigido por especialista colegiado. Ideal para servicios que requieren seguridad, informe y seguimiento.</small>
+            <small>Corporacion RyC Contratistas Generales S.A.C. · RUC 20533666273. Especialista CIP 85540.</small>
             <div class="badges"><span class="badge">CIP 85540</span><span class="badge">Huaraz</span><span class="badge">24/7</span></div>
           </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Trabajos reales</h2><span>Portafolio</span></div>
+        <div class="photo-strip">
+          <button class="photo-card" onclick="openRequest('Solar')">
+            <img src="assets/photos/foto-01.jpg" alt="Instalacion de paneles solares ENERGETICOS">
+            <small>Energia solar y mantenimiento en campo</small>
+          </button>
+          <div class="photo-stack">
+            <button class="photo-card" onclick="openRequest('Pozo a tierra')">
+              <img src="assets/photos/foto-17.jpg" alt="Medicion de puesta a tierra con telurómetro">
+              <small>Medicion 7.56 ohmios</small>
+            </button>
+            <button class="photo-card" onclick="openRequest('Electricidad')">
+              <img src="assets/photos/foto-04.jpg" alt="Inspeccion de tablero electrico">
+              <small>Tableros electricos</small>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><h2>Paginas oficiales</h2><span>Visitar</span></div>
+        <div class="link-list">
+          <a class="site-link" href="https://energeticos2023.github.io/energeticos/" target="_blank" rel="noopener"><div><b>ENERGETICOS</b><small>Servicios del Sector Electrico</small></div><span>›</span></a>
+          <a class="site-link" href="https://energeticos2023.github.io/YACUSOL/" target="_blank" rel="noopener"><div><b>YACUSOL</b><small>Termas solares en Huaraz</small></div><span>›</span></a>
+          <a class="site-link" href="https://energeticos2023.github.io/Yacusol-app/" target="_blank" rel="noopener"><div><b>Mini-app de termas</b><small>Catalogo y mantenimiento YACUSOL</small></div><span>›</span></a>
+          <a class="site-link" href="https://www.facebook.com/INGENIEROS.RYC/" target="_blank" rel="noopener"><div><b>Facebook ENERGETICOS</b><small>Canal oficial de difusion y contacto</small></div><span>›</span></a>
+          <a class="site-link" href="https://www.facebook.com/people/Yacusol/61590174891879/" target="_blank" rel="noopener"><div><b>Facebook YACUSOL</b><small>Termas solares y novedades</small></div><span>›</span></a>
         </div>
       </section>
     </section>
@@ -395,6 +522,11 @@
         <div><h2 id="request-title">Nueva solicitud</h2><small>Datos minimos para atender bien desde celular</small></div>
       </header>
       <form class="form" id="request-form">
+        <div class="mini-steps" aria-label="Pasos de solicitud">
+          <div class="mini-step"><span>1</span><div><b>Elige el servicio</b><small>La app cambia las preguntas segun electricidad, termas, sanitarias o certificados.</small></div></div>
+          <div class="mini-step"><span>2</span><div><b>Marca el sintoma</b><small>Solo toca lo que esta pasando. No necesitas saber el nombre tecnico.</small></div></div>
+          <div class="mini-step"><span>3</span><div><b>Envia por WhatsApp</b><small>ENERGETICOS recibe un resumen ordenado para responder mas rapido.</small></div></div>
+        </div>
         <div class="two">
           <div class="field">
             <label for="client">Nombre</label>
@@ -441,15 +573,9 @@
           </div>
         </div>
         <div class="field">
-          <label>Sintomas frecuentes</label>
-          <div class="chips" id="symptoms">
-            <button type="button" class="chip">Salta la llave</button>
-            <button type="button" class="chip">No calienta</button>
-            <button type="button" class="chip">Hay fuga</button>
-            <button type="button" class="chip">Olor a quemado</button>
-            <button type="button" class="chip">Necesito certificado</button>
-            <button type="button" class="chip">Otro</button>
-          </div>
+          <label id="symptom-label">Sintomas frecuentes</label>
+          <div class="chips" id="symptoms"></div>
+          <div class="hint" id="symptom-help">Selecciona un servicio para ver sintomas especificos.</div>
         </div>
         <div class="field">
           <label for="description">Descripcion</label>
@@ -513,18 +639,99 @@
       </section>
     </section>
 
+    <section class="view" id="account">
+      <header class="subtop">
+        <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
+        <div><h2>Cuenta</h2><small>Datos del cliente y de ENERGETICOS</small></div>
+      </header>
+      <section class="section">
+        <div class="card">
+          <div class="account-row">
+            <div><b>Mis datos</b><small>Nombre, celular, correo y direcciones frecuentes.</small></div>
+            <button class="btn btn-line" onclick="showToast('Aqui se editara el perfil del cliente.')">Editar</button>
+          </div>
+          <div class="account-row">
+            <div><b>Cuenta empresa</b><small>RUC, razon social, sedes, contacto y cotizaciones formales.</small></div>
+            <button class="btn btn-line" onclick="showToast('Aqui se activara el modo empresa o institucion.')">Activar</button>
+          </div>
+          <div class="account-row">
+            <div><b>ENERGETICOS</b><small>WhatsApp 942 899 919 · energeticos.ryc@gmail.com · Jr. Augusto B. Leguia 563.</small></div>
+            <button class="btn btn-primary" onclick="openWhatsApp()">Contactar</button>
+          </div>
+          <div class="account-row">
+            <div><b>Paginas web</b><small>ENERGETICOS, YACUSOL, mini-app y Facebook oficial.</small></div>
+            <button class="btn btn-line" onclick="showView('home','nav-home')">Ver</button>
+          </div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="card">
+          <b>Ruta simple de uso</b>
+          <small style="display:block;margin-top:7px;color:var(--muted);line-height:1.45">Primero elige servicio, luego marca sintoma, despues envia tus datos. Pedidos, Certificados y Cuenta quedan como accesos secundarios.</small>
+        </div>
+      </section>
+    </section>
+
     <nav class="nav" aria-label="Navegacion principal">
       <button id="nav-home" class="on" onclick="showView('home','nav-home')"><span>⌂</span>Inicio</button>
       <button id="nav-orders" onclick="showView('track','nav-orders')"><span>☷</span>Pedidos</button>
       <button class="main" onclick="openRequest('Emergencia')" aria-label="Pedir auxilio">⚡</button>
       <button id="nav-certs" onclick="showView('certs','nav-certs')"><span>✓</span>Certificados</button>
-      <button id="nav-account" onclick="showToast('Perfil: direcciones, empresa, RUC, correos y datos de contacto.')"><span>○</span>Cuenta</button>
+      <button id="nav-account" onclick="showView('account','nav-account')"><span>○</span>Cuenta</button>
     </nav>
     <div class="toast" id="toast"></div>
   </main>
 
   <script>
     const companyPhone = "51942899919";
+    const serviceSymptoms = {
+      "Electricidad": {
+        label: "Sintomas electricos",
+        help: "Si hay humo, chispas o olor a quemado, evita manipular el tablero y pide emergencia.",
+        items: ["Salta la llave termica", "No hay luz", "Chispas en tomacorriente", "Olor a quemado", "Tablero caliente", "Necesito instalacion"]
+      },
+      "Agua caliente": {
+        label: "Sintomas de terma o ducha",
+        help: "Indica marca, tipo de terma y si es electrica, gas o solar.",
+        items: ["No calienta", "Agua tibia", "Fuga en terma", "Dispara la llave", "Baja presion", "Mantenimiento anual"]
+      },
+      "Sanitarias": {
+        label: "Sintomas sanitarios",
+        help: "Describe si la fuga es visible, oculta, en bano, cocina, tanque o cisterna.",
+        items: ["Hay fuga", "Baja presion", "Desague atorado", "Mal olor", "Bomba no prende", "Cisterna/tanque"]
+      },
+      "Pozo a tierra": {
+        label: "Necesidad de puesta a tierra",
+        help: "Ideal para comercios, bancos, hoteles e instituciones que necesitan medicion o mantenimiento.",
+        items: ["Medicion anual", "Alta resistencia", "Necesito protocolo", "Pozo existente", "Pozo nuevo", "Para ITSE"]
+      },
+      "Certificacion": {
+        label: "Tipo de certificado",
+        help: "Los certificados requieren datos del local, visita, medicion y firma responsable.",
+        items: ["Pozo a tierra", "Luxometria", "Conformidad electrica", "Informe tecnico", "Renovacion anual", "Cotizacion formal"]
+      },
+      "Solar": {
+        label: "Sintomas solares",
+        help: "Indica si es sistema termico, fotovoltaico, marca y capacidad si la conoces.",
+        items: ["No calienta", "Fuga en valvula", "Baja presion", "Panel sucio", "Inversor falla", "Mantenimiento"]
+      },
+      "Pintura": {
+        label: "Necesidad de pintura",
+        help: "Indica area aproximada, interior/exterior y si hay humedad o filtracion.",
+        items: ["Pintura interior", "Pintura exterior", "Humedad", "Filtracion", "Resane", "Cotizacion"]
+      },
+      "Otros servicios": {
+        label: "Cuéntanos que necesitas",
+        help: "Usa esta opcion cuando no encuentres el rubro. ENERGETICOS clasificara la solicitud.",
+        items: ["Soldadura", "Puertas/ventanas", "Cerrajeria", "Estructuras", "Mantenimiento general", "Otro"]
+      }
+    };
+
+    const serviceAliases = {
+      "Emergencia": "Electricidad",
+      "Diagnostico con fotos": "Electricidad",
+      "Luxometria": "Certificacion"
+    };
 
     function showView(viewId, navId){
       document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
@@ -537,11 +744,21 @@
     function openRequest(service){
       document.getElementById("request-title").textContent = service === "Emergencia" ? "Emergencia tecnica" : service;
       const serviceSelect = document.getElementById("service");
+      const targetService = serviceAliases[service] || service;
       [...serviceSelect.options].forEach(option => {
-        if(service.toLowerCase().includes(option.value.toLowerCase())) serviceSelect.value = option.value;
+        if(targetService.toLowerCase().includes(option.value.toLowerCase())) serviceSelect.value = option.value;
       });
       document.getElementById("urgency").value = service === "Emergencia" ? "Emergencia" : "Hoy";
+      renderSymptoms(serviceSelect.value);
       showView("request", null);
+    }
+
+    function renderSymptoms(service){
+      const config = serviceSymptoms[service] || serviceSymptoms["Otros servicios"];
+      const container = document.getElementById("symptoms");
+      document.getElementById("symptom-label").textContent = config.label;
+      document.getElementById("symptom-help").textContent = config.help;
+      container.innerHTML = config.items.map(item => `<button type="button" class="chip">${item}</button>`).join("");
     }
 
     function selectedSymptoms(){
@@ -552,6 +769,10 @@
       const chip = event.target.closest(".chip");
       if(!chip) return;
       chip.classList.toggle("active");
+    });
+
+    document.getElementById("service").addEventListener("change", event => {
+      renderSymptoms(event.target.value);
     });
 
     function buildRequest(){
@@ -592,6 +813,8 @@
     if("serviceWorker" in navigator){
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
     }
+
+    renderSymptoms(document.getElementById("service").value);
   </script>
 </body>
 </html>

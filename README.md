@@ -11,6 +11,8 @@ Prototipo movil publicable para la primera fase de la aplicacion de ENERGETICOS.
 - Generacion de mensaje ordenado hacia WhatsApp.
 - Vista de seguimiento del pedido.
 - Vista de certificaciones y vencimientos.
+- Seccion de trabajos reales con fotografias extraidas de `Fotos.pdf`.
+- Enlaces oficiales a ENERGETICOS, YACUSOL, mini-app de termas y Facebook.
 - Archivos PWA basicos: `manifest.webmanifest`, `icon.svg` y `sw.js`.
 
 ## Publicacion en GitHub Pages

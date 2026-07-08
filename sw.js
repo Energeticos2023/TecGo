@@ -1,5 +1,13 @@
-const CACHE = "tecgo-v1";
-const ASSETS = ["./", "./index.html", "./manifest.webmanifest", "./icon.svg"];
+const CACHE = "tecgo-v3";
+const ASSETS = [
+  "./",
+  "./index.html",
+  "./manifest.webmanifest",
+  "./icon.svg",
+  "./assets/photos/foto-01.jpg",
+  "./assets/photos/foto-04.jpg",
+  "./assets/photos/foto-17.jpg"
+];
 
 self.addEventListener("install", event => {
   event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
