@@ -1,19 +1,17 @@
 {
-  "name": "TecGo by ENERGETICOS",
-  "short_name": "TecGo",
-  "description": "Asistencia tecnica, diagnostico guiado y despacho rapido en Huaraz e Independencia.",
+  "name": "TecGo · ENERGÉTICOS",
+  "short_name": "ENERGÉTICOS",
+  "description": "Asistencia técnica, diagnóstico guiado y despacho rápido en Huaraz e Independencia. Las 24 horas.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
   "background_color": "#f4f7fb",
   "theme_color": "#0e2a47",
   "orientation": "portrait",
+  "lang": "es-PE",
   "icons": [
-    {
-      "src": "icon.svg",
-      "sizes": "any",
-      "type": "image/svg+xml",
-      "purpose": "any maskable"
-    }
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "maskable" }
   ]
 }

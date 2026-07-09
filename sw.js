@@ -1,25 +1,34 @@
-const CACHE = "tecgo-v3";
-const ASSETS = [
-  "./",
-  "./index.html",
-  "./manifest.webmanifest",
-  "./icon.svg",
-  "./assets/photos/foto-01.jpg",
-  "./assets/photos/foto-04.jpg",
-  "./assets/photos/foto-17.jpg"
+// TecGo · ENERGÉTICOS — service worker v2
+const CACHE = 'tecgo-energeticos-v2';
+const FILES = [
+  './',
+  './index.html',
+  './manifest.webmanifest',
+  './icons/icon-192.png',
+  './icons/icon-512.png',
+  './assets/logo.png',
+  './assets/ingeniero.jpg'
 ];
-
-self.addEventListener("install", event => {
-  event.waitUntil(caches.open(CACHE).then(cache => cache.addAll(ASSETS)));
+self.addEventListener('install', (e) => {
+  e.waitUntil(caches.open(CACHE).then((c) => c.addAll(FILES)));
+  self.skipWaiting();
 });
-
-self.addEventListener("activate", event => {
-  event.waitUntil(
-    caches.keys().then(keys => Promise.all(keys.filter(key => key !== CACHE).map(key => caches.delete(key))))
+self.addEventListener('activate', (e) => {
+  e.waitUntil(caches.keys().then((keys) =>
+    Promise.all(keys.filter((k) => k !== CACHE).map((k) => caches.delete(k)))
+  ));
+  self.clients.claim();
+});
+self.addEventListener('fetch', (e) => {
+  e.respondWith(
+    caches.match(e.request).then((hit) => hit ||
+      fetch(e.request).then((res) => {
+        if (e.request.method === 'GET' && res.ok && e.request.url.startsWith(self.location.origin)) {
+          const copy = res.clone();
+          caches.open(CACHE).then((c) => c.put(e.request, copy));
+        }
+        return res;
+      }).catch(() => hit)
+    )
   );
-});
-
-self.addEventListener("fetch", event => {
-  if (event.request.method !== "GET") return;
-  event.respondWith(caches.match(event.request).then(cached => cached || fetch(event.request)));
 });

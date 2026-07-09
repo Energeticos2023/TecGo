@@ -7,6 +7,11 @@
   <meta name="description" content="TecGo by ENERGETICOS: asistencia tecnica, diagnostico guiado y despacho rapido en Huaraz e Independencia.">
   <title>TecGo by ENERGETICOS</title>
   <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/png" href="icons/icon-192.png">
+  <link rel="apple-touch-icon" href="icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="ENERGÉTICOS">
   <style>
     :root{
       --navy:#0e2a47;
@@ -420,6 +425,61 @@
       line-height:1.35;
     }
     .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+
+    /* --- logo oficial + pill TecGo --- */
+    .brand-logo{height:48px;width:auto;background:#fff;border-radius:12px;padding:5px 9px;display:block;box-shadow:0 8px 22px rgba(0,0,0,.22)}
+    .pill-tecgo{display:inline-flex;align-items:center;gap:5px;margin-top:6px;background:rgba(247,148,29,.16);border:1px solid rgba(247,148,29,.55);color:#ffd9a3;font-size:11px;font-weight:800;border-radius:999px;padding:4px 10px;letter-spacing:.06em}
+    .pill-tecgo b{color:var(--orange)}
+
+    /* --- titular rotativo --- */
+    .hero h1{transition:opacity .35s ease}
+    .hero h1.fade{opacity:0}
+
+    /* --- contadores --- */
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
+    .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:11px 6px;text-align:center}
+    .stat b{display:block;font-size:20px;color:var(--orange);font-family:Consolas,Monaco,monospace}
+    .stat small{display:block;margin-top:2px;font-size:10.5px;color:#cfe2f2;font-weight:700;letter-spacing:.04em}
+
+    /* --- vitrina de termas --- */
+    .shop-scroll{display:flex;gap:11px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .shop-scroll::-webkit-scrollbar{display:none}
+    .product{flex:0 0 214px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 22px rgba(14,42,71,.08);display:flex;flex-direction:column}
+    .product img{width:100%;height:118px;object-fit:cover;display:block}
+    .product .p-body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
+    .product b{font-size:13.5px}
+    .product .p-desc{font-size:11.5px;color:var(--muted);line-height:1.35;flex:1}
+    .product .p-price{font-size:13px;font-weight:900;color:#0b7a43}
+    .product .btn{min-height:40px;padding:9px 10px;font-size:12.5px;margin-top:7px}
+    .ribbon{position:absolute;top:10px;left:10px;background:var(--orange);color:#3b2300;font-size:10px;font-weight:900;border-radius:7px;padding:4px 8px;letter-spacing:.05em}
+    .product{position:relative}
+
+    /* --- galeria de trabajos --- */
+    .gallery{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+    .gallery::-webkit-scrollbar{display:none}
+    .g-item{flex:0 0 168px;scroll-snap-align:start;position:relative;border-radius:var(--radius);overflow:hidden;background:#d8e4ef;box-shadow:0 8px 20px rgba(14,42,71,.09)}
+    .g-item img{width:100%;height:126px;object-fit:cover;display:block}
+    .g-item small{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(14,42,71,.84);color:#fff;border-radius:8px;padding:6px 7px;font-weight:800;font-size:10.5px;line-height:1.25}
+
+    /* --- foto del ingeniero --- */
+    .avatar-photo{width:70px;height:70px;border-radius:15px;object-fit:cover;border:3px solid var(--orange);flex:none;display:block}
+
+    /* --- banner e instrucciones de instalacion --- */
+    .install-banner{display:none;margin-top:12px;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);padding:14px;align-items:center;gap:12px}
+    .install-banner.show{display:flex}
+    .install-banner .ib-ico{width:44px;height:44px;border-radius:11px;background:#fff;flex:none;display:grid;place-items:center;overflow:hidden}
+    .install-banner .ib-ico img{width:38px;height:38px;object-fit:contain}
+    .install-banner b{display:block;font-size:13.5px}
+    .install-banner small{display:block;font-size:11.5px;color:#c9dcec;margin-top:2px;line-height:1.3}
+    .install-banner .btn{margin-left:auto;min-height:40px;padding:9px 12px;font-size:12.5px}
+    .modal-back{position:fixed;inset:0;background:rgba(7,26,44,.66);z-index:60;display:none;align-items:flex-end;justify-content:center}
+    .modal-back.show{display:flex}
+    .modal{width:100%;max-width:440px;background:#fff;border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
+    @media(min-width:520px){.modal{border-radius:22px;margin-bottom:40px}}
+    .modal h3{margin:0 0 6px;font-size:17px}
+    .modal p{margin:0 0 12px;font-size:13px;color:var(--muted);line-height:1.45}
+    .modal .mini-step{margin-bottom:8px}
+    .ios-share{display:inline-block;width:17px;height:17px;vertical-align:-3px}
   </style>
 </head>
 <body>
@@ -427,20 +487,27 @@
     <section class="view active" id="home">
       <header class="hero">
         <div class="brand">
-          <div style="display:flex;align-items:center;gap:11px">
-            <div class="mark">TG</div>
-            <div class="brand-title">
-              <strong>TecGo</strong>
-              <small>by ENERGETICOS</small>
-            </div>
+          <div>
+            <img class="brand-logo" src="assets/logo.png" alt="ENERGÉTICOS — Servicios del Sector Eléctrico">
+            <span class="pill-tecgo">Plataforma <b>TecGo</b> · 24/7</span>
           </div>
-          <div class="zone">Huaraz</div>
+          <div class="zone">Huaraz · Independencia</div>
         </div>
-        <h1>Tu tecnico correcto, sin perder tiempo.</h1>
+        <h1 id="hero-line">Tu técnico correcto, sin perder tiempo.</h1>
         <p>Describe el problema, envia fotos y ENERGETICOS prepara la atencion con diagnostico guiado, herramientas y respaldo de ingenieria.</p>
         <div class="cta-row">
           <button class="btn btn-primary" onclick="openRequest('Emergencia')">Pedir auxilio</button>
           <button class="btn btn-light" onclick="openWhatsApp()">WhatsApp</button>
+        </div>
+        <div class="stats" aria-label="Nuestra experiencia">
+          <div class="stat"><b data-count="30">0</b><small>AÑOS DE OBRA</small></div>
+          <div class="stat"><b>7.56&nbsp;Ω</b><small>MEDICIÓN REAL</small></div>
+          <div class="stat"><b data-count="24">0</b><small>HORAS AL DÍA</small></div>
+        </div>
+        <div class="install-banner" id="install-banner">
+          <span class="ib-ico"><img src="icons/icon-192.png" alt=""></span>
+          <span><b>Lleva ENERGÉTICOS en tu celular</b><small>Instala la app y pide auxilio en dos toques.</small></span>
+          <button class="btn btn-primary" onclick="installApp()">Instalar</button>
         </div>
       </header>
 
@@ -474,11 +541,54 @@
       </section>
 
       <section class="section">
+        <div class="section-head"><h2>Termas solares en oferta</h2><span>YACUSOL</span></div>
+        <div class="shop-scroll">
+          <div class="product">
+            <span class="ribbon">MÁS PEDIDA</span>
+            <img src="assets/photos/foto-13.jpg" alt="Terma solar de acero inoxidable instalada en Huaraz">
+            <div class="p-body">
+              <b>Terma solar 120 L</b>
+              <span class="p-desc">Para 2 a 3 personas. Paquete todo en uno: terma + instalación.</span>
+              <span class="p-price">Desde S/ 2,590</span>
+              <button class="btn btn-primary" onclick="quoteProduct('Terma solar YACUSOL 120 L')">Cotizar ahora</button>
+            </div>
+          </div>
+          <div class="product">
+            <img src="assets/photos/foto-13.jpg" alt="Terma solar familiar YACUSOL">
+            <div class="p-body">
+              <b>Terma solar 200–300 L</b>
+              <span class="p-desc">Familias grandes, hospedajes y hoteles. Agua caliente sin recibo de luz.</span>
+              <span class="p-price">Precio de campaña</span>
+              <button class="btn btn-primary" onclick="quoteProduct('Terma solar YACUSOL 200-300 L')">Cotizar ahora</button>
+            </div>
+          </div>
+          <div class="product">
+            <img src="assets/photos/foto-01.jpg" alt="Instalación de paneles solares">
+            <div class="p-body">
+              <b>Paneles fotovoltaicos</b>
+              <span class="p-desc">Genera tu propia energía. Dimensionamos con tu recibo de luz.</span>
+              <span class="p-price">Cotización a medida</span>
+              <button class="btn btn-primary" onclick="quoteProduct('Sistema de paneles fotovoltaicos')">Cotizar ahora</button>
+            </div>
+          </div>
+          <div class="product">
+            <img src="assets/photos/foto-16.jpg" alt="Pozo a tierra con registro">
+            <div class="p-body">
+              <b>Protocolo pozo a tierra</b>
+              <span class="p-desc">Medición certificada y protocolo firmado por ingeniero CIP para tu ITSE.</span>
+              <span class="p-price">Reserva tu medición</span>
+              <button class="btn btn-primary" onclick="quoteProduct('Protocolo de pozo a tierra con medición')">Cotizar ahora</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
         <div class="card trust">
-          <div class="avatar">JZ</div>
+          <img class="avatar-photo" src="assets/ingeniero.jpg" alt="Ing. José Rafael Zeña Peche en campo">
           <div>
-            <b>Respaldo tecnico de ENERGETICOS</b>
-            <small>Corporacion RyC Contratistas Generales S.A.C. · RUC 20533666273. Especialista CIP 85540.</small>
+            <b>Ing. José Rafael Zeña Peche · CIP 85540</b>
+            <small>Más de 30 años en instalaciones eléctricas hospitalarias e industriales. Corporación RyC Contratistas Generales S.A.C. · RUC 20533666273.</small>
             <div class="badges"><span class="badge">CIP 85540</span><span class="badge">Huaraz</span><span class="badge">24/7</span></div>
           </div>
         </div>
@@ -486,21 +596,15 @@
 
       <section class="section">
         <div class="section-head"><h2>Trabajos reales</h2><span>Portafolio</span></div>
-        <div class="photo-strip">
-          <button class="photo-card" onclick="openRequest('Solar')">
-            <img src="assets/photos/foto-01.jpg" alt="Instalacion de paneles solares ENERGETICOS">
-            <small>Energia solar y mantenimiento en campo</small>
-          </button>
-          <div class="photo-stack">
-            <button class="photo-card" onclick="openRequest('Pozo a tierra')">
-              <img src="assets/photos/foto-17.jpg" alt="Medicion de puesta a tierra con telurómetro">
-              <small>Medicion 7.56 ohmios</small>
-            </button>
-            <button class="photo-card" onclick="openRequest('Electricidad')">
-              <img src="assets/photos/foto-04.jpg" alt="Inspeccion de tablero electrico">
-              <small>Tableros electricos</small>
-            </button>
-          </div>
+        <div class="gallery">
+          <button class="g-item" onclick="openRequest('Solar')"><img src="assets/photos/foto-01.jpg" alt="Instalación de paneles solares"><small>Paneles solares en obra</small></button>
+          <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-17.jpg" alt="Telurómetro marcando 7.56 ohmios"><small>Medición real: 7.56 Ω</small></button>
+          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-04.jpg" alt="Inspección de tablero eléctrico"><small>Tableros eléctricos</small></button>
+          <button class="g-item" onclick="openRequest('Agua caliente')"><img src="assets/photos/foto-13.jpg" alt="Terma solar instalada"><small>Termas solares YACUSOL</small></button>
+          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-02.jpg" alt="Medición con pinza amperimétrica"><small>Mediciones certificadas</small></button>
+          <button class="g-item" onclick="openRequest('Sanitarias')"><img src="assets/photos/foto-05.jpg" alt="Mantenimiento de bombas de agua"><small>Bombas y sanitarias</small></button>
+          <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-16.jpg" alt="Registro de pozo a tierra"><small>Pozos a tierra</small></button>
+          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-11.jpg" alt="Obra Centro de Salud Yungar"><small>Obras institucionales</small></button>
         </div>
       </section>
 
@@ -662,6 +766,10 @@
             <div><b>Paginas web</b><small>ENERGETICOS, YACUSOL, mini-app y Facebook oficial.</small></div>
             <button class="btn btn-line" onclick="showView('home','nav-home')">Ver</button>
           </div>
+          <div class="account-row">
+            <div><b>Instalar en mi celular</b><small>Android y iPhone: usa la app como cualquier aplicación, con su propio ícono.</small></div>
+            <button class="btn btn-primary" onclick="installApp()">Instalar</button>
+          </div>
         </div>
       </section>
       <section class="section">
@@ -680,6 +788,23 @@
       <button id="nav-account" onclick="showView('account','nav-account')"><span>○</span>Cuenta</button>
     </nav>
     <div class="toast" id="toast"></div>
+
+    <div class="modal-back" id="install-modal" role="dialog" aria-modal="true" aria-labelledby="im-title">
+      <div class="modal">
+        <h3 id="im-title">Instala la app en tu celular</h3>
+        <p id="im-intro">Sigue estos pasos y ENERGÉTICOS quedará con su propio ícono, como cualquier aplicación.</p>
+        <div id="im-ios" style="display:none">
+          <div class="mini-step"><span>1</span><div><b>Abre esta página en Safari</b><small>En iPhone la instalación solo funciona desde Safari.</small></div></div>
+          <div class="mini-step"><span>2</span><div><b>Toca el botón Compartir <svg class="ios-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><rect x="4" y="11" width="16" height="10" rx="2"/></svg></b><small>Está en la barra inferior de Safari.</small></div></div>
+          <div class="mini-step"><span>3</span><div><b>Elige "Añadir a pantalla de inicio"</b><small>Confirma con "Añadir" y listo: verás el logo de ENERGÉTICOS.</small></div></div>
+        </div>
+        <div id="im-android" style="display:none">
+          <div class="mini-step"><span>1</span><div><b>Abre el menú de Chrome (⋮)</b><small>Arriba a la derecha del navegador.</small></div></div>
+          <div class="mini-step"><span>2</span><div><b>Toca "Añadir a pantalla principal" o "Instalar app"</b><small>Confirma y el ícono aparecerá en tu pantalla.</small></div></div>
+        </div>
+        <button class="btn btn-dark btn-full" onclick="closeInstallModal()">Entendido</button>
+      </div>
+    </div>
   </main>
 
   <script>
@@ -810,9 +935,95 @@
       window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
     }
 
-    if("serviceWorker" in navigator){
+    if("serviceWorker" in navigator && location.protocol.startsWith("http")){
       window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
     }
+
+    /* ===== Titular rotativo de ventas ===== */
+    const heroLines = [
+      "Tu técnico correcto, sin perder tiempo.",
+      "¿Se fue la luz? Llegamos con la solución.",
+      "Agua caliente todos los días con termas YACUSOL.",
+      "Certificados para tu licencia, firmados por ingeniero CIP.",
+      "Atendemos hogares, hoteles, bancos y negocios. 24/7."
+    ];
+    let heroIndex = 0;
+    setInterval(() => {
+      const h = document.getElementById("hero-line");
+      if(!h) return;
+      h.classList.add("fade");
+      setTimeout(() => {
+        heroIndex = (heroIndex + 1) % heroLines.length;
+        h.textContent = heroLines[heroIndex];
+        h.classList.remove("fade");
+      }, 350);
+    }, 4200);
+
+    /* ===== Contadores animados ===== */
+    function animateCounters(){
+      document.querySelectorAll("[data-count]").forEach(el => {
+        const target = parseInt(el.dataset.count, 10);
+        let value = 0;
+        const step = Math.max(1, Math.round(target / 36));
+        const timer = setInterval(() => {
+          value += step;
+          if(value >= target){ value = target; clearInterval(timer); }
+          el.textContent = value + (target === 30 ? "+" : "");
+        }, 40);
+      });
+    }
+    window.addEventListener("load", animateCounters);
+
+    /* ===== Cotizar producto (vitrina) ===== */
+    function quoteProduct(producto){
+      const msg = "Hola ENERGÉTICOS, vi en la app TecGo: " + producto +
+        ". Quiero cotizarlo.%0AMi distrito o dirección: %0AMi consulta: ";
+      window.open("https://wa.me/" + companyPhone + "?text=" + msg.replace(/ /g, "%20"), "_blank", "noopener");
+    }
+
+    /* ===== Instalación PWA: Android (prompt nativo) + iPhone (instrucciones) ===== */
+    let deferredInstall = null;
+    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredInstall = e;
+      if(!isStandalone) document.getElementById("install-banner").classList.add("show");
+    });
+
+    if(isIOS && !isStandalone){
+      window.addEventListener("load", () => document.getElementById("install-banner").classList.add("show"));
+    }
+
+    function installApp(){
+      if(deferredInstall){
+        deferredInstall.prompt();
+        deferredInstall.userChoice.then(choice => {
+          if(choice.outcome === "accepted"){
+            document.getElementById("install-banner").classList.remove("show");
+            showToast("¡Listo! ENERGÉTICOS quedó instalada en tu celular.");
+          }
+          deferredInstall = null;
+        });
+        return;
+      }
+      // Sin prompt nativo: mostrar instrucciones según el equipo
+      document.getElementById("im-ios").style.display = isIOS ? "block" : "none";
+      document.getElementById("im-android").style.display = isIOS ? "none" : "block";
+      document.getElementById("install-modal").classList.add("show");
+    }
+    function closeInstallModal(){
+      document.getElementById("install-modal").classList.remove("show");
+    }
+    document.getElementById("install-modal").addEventListener("click", (e) => {
+      if(e.target.id === "install-modal") closeInstallModal();
+    });
+
+    window.addEventListener("appinstalled", () => {
+      document.getElementById("install-banner").classList.remove("show");
+      showToast("¡Listo! ENERGÉTICOS quedó instalada en tu celular.");
+    });
 
     renderSymptoms(document.getElementById("service").value);
   </script>

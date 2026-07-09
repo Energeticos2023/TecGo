@@ -1,33 +1,36 @@
-# TecGo by ENERGETICOS
+# TecGo · ENERGÉTICOS
 
-Prototipo movil publicable para la primera fase de la aplicacion de ENERGETICOS.
+App móvil (PWA) de ENERGÉTICOS para Huaraz e Independencia. Lista para publicar en GitHub Pages e instalar en Android y iPhone.
 
-## Que incluye
+## Novedades de esta versión
 
-- Pantalla principal optimizada para Android y iPhone.
-- Nombre corto de marca: TecGo by ENERGETICOS.
-- Servicios de fase 1: electricidad, termas, sanitarias, pozo a tierra, certificaciones, solar, pintura y otros.
-- Formulario de solicitud con datos minimos del cliente, servicio, urgencia, sintomas, descripcion y direccion.
-- Generacion de mensaje ordenado hacia WhatsApp.
-- Vista de seguimiento del pedido.
-- Vista de certificaciones y vencimientos.
-- Seccion de trabajos reales con fotografias extraidas de `Fotos.pdf`.
-- Enlaces oficiales a ENERGETICOS, YACUSOL, mini-app de termas y Facebook.
-- Archivos PWA basicos: `manifest.webmanifest`, `icon.svg` y `sw.js`.
+- Logo oficial de ENERGÉTICOS en la cabecera y como ícono de la app (Android y iPhone), con la marca TecGo visible como "Plataforma TecGo".
+- Titular rotativo de ventas en la portada (5 mensajes que cambian solos).
+- Contadores animados: +30 años, medición real 7.56 Ω, 24 horas.
+- Vitrina "Termas solares en oferta" con botones Cotizar ahora que abren WhatsApp con el producto ya escrito.
+- Galería deslizable con 8 trabajos reales (fotos propias).
+- Tarjeta de confianza con la foto real del Ing. José Rafael Zeña Peche (CIP 85540).
+- Instalación en el celular:
+  - Android/Chrome: botón "Instalar" con ventana nativa del sistema.
+  - iPhone/Safari: instrucciones paso a paso (Compartir → Añadir a pantalla de inicio).
+  - Banner de instalación en la portada y opción en la vista Cuenta.
+- Service worker v2: la app abre incluso con mala señal.
 
-## Publicacion en GitHub Pages
+## Publicación en GitHub Pages
 
-1. Crear un repositorio en GitHub.
-2. Subir estos archivos a la rama principal.
-3. En GitHub, ir a Settings > Pages.
-4. Elegir Deploy from a branch.
-5. Seleccionar la rama `main` y la carpeta `/root`.
+1. Crear un repositorio (por ejemplo `TecGo`) en la cuenta energeticos2023.
+2. Subir TODOS estos archivos y carpetas a la rama principal (index.html, manifest.webmanifest, sw.js, icon.svg, icons/, assets/).
+3. Settings → Pages → Deploy from a branch → rama `main`, carpeta `/root`.
+4. Esperar 1-2 minutos y abrir la dirección que GitHub indique.
+5. Desde el celular, abrir esa dirección y usar el botón "Instalar".
 
-La pagina principal es `index.html`.
+## Datos ya cargados
 
-## Datos que deben reemplazarse
+- WhatsApp de despacho: 942 899 919 (variable `companyPhone` en index.html).
+- Dirección: Jr. Augusto B. Leguía 563, Independencia.
+- Enlaces oficiales a ENERGÉTICOS, YACUSOL, mini-app de termas y Facebook.
 
-- Celular de WhatsApp en `companyPhone`.
-- Logo oficial si se desea reemplazar el icono actual.
-- Datos reales de empresa, RUC, correo, direccion y horarios.
-- Politica de privacidad y terminos de servicio antes de operar con clientes reales.
+## Pendientes recomendados antes de difundir masivamente
+
+- Términos y condiciones y política de privacidad (Ley 29733).
+- Confirmar precios de campaña de la vitrina de termas.
