@@ -1,1031 +1,1011 @@
 <!doctype html>
 <html lang="es">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#0e2a47">
-  <meta name="description" content="TecGo by ENERGETICOS: asistencia tecnica, diagnostico guiado y despacho rapido en Huaraz e Independencia.">
-  <title>TecGo by ENERGETICOS</title>
-  <link rel="manifest" href="manifest.webmanifest">
-  <link rel="icon" type="image/png" href="icons/icon-192.png">
-  <link rel="apple-touch-icon" href="icons/icon-180.png">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="ENERGÉTICOS">
-  <style>
-    :root{
-      --navy:#0e2a47;
-      --navy-2:#173d64;
-      --orange:#f7941d;
-      --sky:#29abe2;
-      --paper:#f4f7fb;
-      --card:#ffffff;
-      --ink:#13293f;
-      --muted:#5b6f84;
-      --line:#dce6f0;
-      --ok:#2fbf71;
-      --warn:#f7b32b;
-      --danger:#e4572e;
-      --radius:14px;
-      --shadow:0 16px 38px rgba(14,42,71,.14);
-    }
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0C2340">
+<meta name="description" content="TecGo de ENERGÉTICOS: asistencia técnica eléctrica, sanitaria y solar en Huaraz e Independencia. Diagnóstico guiado, certificados y atención 24 horas.">
+<title>TecGo · ENERGÉTICOS</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="apple-touch-icon" href="icons/icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="TecGo">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --azul-900:#061C3A; --azul-700:#0C2340; --azul-500:#16315B;
+  --naranja:#F28C1E; --naranja-osc:#D9700A; --dorado:#FFC220;
+  --nieve:#F3F7FC; --linea:#DCE6F2; --texto:#132238; --muted:#5D7086;
+  --verde:#25D366; --ok:#1F9D5B; --warn:#E5A50A; --alerta:#D64545;
+  --sombra:0 14px 38px rgba(6,28,58,.12); --radio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--nieve);color:var(--texto);
+  font-family:"Barlow",system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;
+  font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+img{max-width:100%;display:block}
+h1,h2,h3,h4,.cond{font-family:"Barlow Condensed","Barlow",Arial,sans-serif;margin:0;letter-spacing:.2px}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:3px solid var(--naranja);outline-offset:2px}
+.phone{width:min(560px,100%);margin-inline:auto;min-height:100vh;padding-bottom:96px;
+  background:var(--nieve);box-shadow:0 0 60px rgba(6,28,58,.10)}
+.view{display:none;animation:fade .26s ease}
+.view.active{display:block}
+@keyframes fade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.view{animation:none}}
+.hide{display:none !important}
 
-    *{box-sizing:border-box}
-    html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-    body{
-      margin:0;
-      min-height:100dvh;
-      background:#071a2c;
-      color:var(--ink);
-      font-family:Inter,Segoe UI,Roboto,Arial,sans-serif;
-      display:flex;
-      justify-content:center;
-    }
-    button,input,select,textarea{font:inherit}
-    button{border:0;cursor:pointer}
-    a{color:inherit;text-decoration:none}
-    :focus-visible{outline:3px solid var(--sky);outline-offset:3px}
+/* ---------- Botones ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  padding:13px 18px;border:0;border-radius:10px;cursor:pointer;font-family:"Barlow Condensed";
+  font-size:17px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;
+  transition:transform .14s ease,filter .14s ease}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:var(--naranja);color:#fff;box-shadow:0 8px 20px rgba(242,140,30,.30)}
+.btn-light{background:#fff;color:var(--azul-700)}
+.btn-dark{background:var(--azul-700);color:#fff}
+.btn-line{background:#fff;color:var(--azul-700);border:2px solid var(--linea)}
+.btn-wa{background:var(--verde);color:#fff;box-shadow:0 8px 20px rgba(37,211,102,.28)}
+.btn-call{background:var(--azul-500);color:#fff}
+.btn-full{width:100%;margin-top:10px}
 
-    .phone{
-      width:100%;
-      max-width:440px;
-      min-height:100dvh;
-      background:var(--paper);
-      position:relative;
-      overflow-x:hidden;
-      box-shadow:0 30px 90px rgba(0,0,0,.48);
-    }
-    @media (min-width:520px){
-      body{padding:24px 0}
-      .phone{min-height:calc(100dvh - 48px);border-radius:32px;overflow:hidden}
-    }
+/* ---------- Portada ---------- */
+.hero{background:radial-gradient(700px 320px at 82% 0%,rgba(242,140,30,.30),transparent 62%),
+  linear-gradient(155deg,var(--azul-900),var(--azul-500));color:#fff;padding:16px 16px 22px;
+  border-bottom:5px solid var(--naranja)}
+.brand{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.brand-logo{width:132px;background:#fff;border-radius:10px;padding:6px}
+.pill-tecgo{display:inline-block;margin-top:9px;background:rgba(255,255,255,.12);
+  border:1px solid rgba(255,255,255,.24);padding:5px 12px;border-radius:999px;
+  font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:700}
+.zone{background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.2);
+  border-radius:999px;padding:6px 12px;font-size:12.5px;color:#CFE0F5;white-space:nowrap}
+.hero h1{font-size:36px;line-height:1.02;font-weight:800;margin:16px 0 8px;transition:opacity .3s ease}
+.hero h1.fade{opacity:0}
+.hero p{color:#CFE0F5;font-size:15.5px;margin:0}
+.cta-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}
+.stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+  border-radius:10px;padding:10px 6px;text-align:center}
+.stat b{display:block;font-family:"Barlow Condensed";font-size:25px;color:var(--dorado);line-height:1}
+.stat small{font-size:10px;letter-spacing:.1em;color:#B7CCE8}
 
-    .view{display:none;padding-bottom:94px}
-    .view.active{display:block}
-    .hero{
-      color:#fff;
-      background:
-        linear-gradient(160deg,rgba(14,42,71,.98),rgba(23,61,100,.96)),
-        radial-gradient(circle at 82% 18%,rgba(41,171,226,.22),transparent 32%);
-      padding:18px 18px 22px;
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-    }
-    .mark{
-      width:48px;
-      height:48px;
-      border-radius:13px;
-      background:linear-gradient(135deg,var(--orange),#ffc15a);
-      color:#1d250d;
-      display:grid;
-      place-items:center;
-      font-weight:900;
-      letter-spacing:-.06em;
-      box-shadow:0 8px 22px rgba(247,148,29,.32);
-    }
-    .brand-title strong{display:block;font-size:22px;letter-spacing:-.04em}
-    .brand-title small{display:block;color:#c8dcec;margin-top:2px}
-    .zone{
-      display:inline-flex;
-      align-items:center;
-      gap:6px;
-      border:1px solid rgba(255,255,255,.18);
-      border-radius:999px;
-      padding:7px 10px;
-      font-size:12px;
-      color:#d9ecfb;
-      background:rgba(255,255,255,.08);
-      white-space:nowrap;
-    }
-    .hero h1{
-      margin:22px 0 10px;
-      font-size:34px;
-      line-height:1.02;
-      letter-spacing:-.05em;
-    }
-    .hero p{
-      margin:0;
-      max-width:34ch;
-      color:#d7e7f5;
-      line-height:1.48;
-      font-size:15px;
-    }
-    .cta-row{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+/* ---------- Banda de emergencia ---------- */
+.sos{background:var(--naranja);color:#3A2205;display:flex;align-items:center;gap:12px;
+  justify-content:space-between;padding:13px 16px}
+.sos b{display:block;font-family:"Barlow Condensed";font-size:20px;color:#2B1903}
+.sos small{font-size:13px;color:#5A3B0C}
+.sos .btn{background:var(--azul-700);color:#fff;flex:none}
 
-    .btn{
-      min-height:46px;
-      border-radius:12px;
-      padding:12px 14px;
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      font-weight:800;
-      transition:transform .16s ease,filter .16s ease;
-    }
-    .btn:active{transform:translateY(1px)}
-    .btn-primary{background:var(--orange);color:#382000}
-    .btn-dark{background:var(--navy);color:#fff}
-    .btn-light{background:#fff;color:var(--navy)}
-    .btn-line{background:#fff;color:var(--navy);border:1.5px solid var(--line)}
-    .btn-full{width:100%}
+/* ---------- Secciones ---------- */
+.section{padding:16px 14px 0}
+.section-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:10px}
+.section-head h2{font-size:25px;font-weight:800;color:var(--azul-700)}
+.section-head span{font-family:"Barlow Condensed";text-transform:uppercase;letter-spacing:.14em;
+  font-size:12px;font-weight:700;color:var(--naranja-osc)}
+.card{background:#fff;border:1px solid var(--linea);border-radius:var(--radio);
+  padding:16px;box-shadow:var(--sombra)}
 
-    .sos{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      background:var(--orange);
-      color:#382000;
-      padding:13px 18px;
-    }
-    .sos b{display:block;font-size:15px}
-    .sos small{display:block;margin-top:2px}
-    .sos .btn{min-width:120px;background:var(--navy);color:#fff}
+/* ---------- Servicios ---------- */
+.services{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
+.service{background:#fff;border:1px solid var(--linea);border-radius:12px;padding:12px 4px 10px;
+  cursor:pointer;font:inherit;text-align:center;box-shadow:0 6px 16px rgba(6,28,58,.06)}
+.service:active{transform:scale(.97)}
+.service .ico{display:block;font-size:24px;line-height:1;margin-bottom:5px}
+.service small{font-size:11.5px;font-weight:600;color:var(--azul-700)}
+@media(max-width:360px){.services{grid-template-columns:repeat(3,1fr)}}
 
-    .section{padding:22px 18px 0}
-    .section-head{display:flex;align-items:end;justify-content:space-between;margin-bottom:12px}
-    .section h2{margin:0;font-size:19px;letter-spacing:-.02em}
-    .section-head span{font-size:12px;font-weight:800;color:#237da8}
+.quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.quick{border:0;border-radius:12px;padding:14px;text-align:left;cursor:pointer;font:inherit;
+  background:var(--azul-700);color:#fff;box-shadow:var(--sombra)}
+.quick b{display:block;font-family:"Barlow Condensed";font-size:20px}
+.quick small{font-size:12.5px;opacity:.85;line-height:1.35}
+.quick.orange{background:var(--naranja)}
+.quick.sky{background:var(--azul-500)}
+.quick.gold{background:var(--dorado);color:var(--azul-900)}
 
-    .services{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}
-    .service{
-      min-height:86px;
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:10px 5px;
-      display:flex;
-      flex-direction:column;
-      align-items:center;
-      justify-content:center;
-      gap:8px;
-      text-align:center;
-      box-shadow:0 4px 12px rgba(14,42,71,.05);
-    }
-    .service .ico{font-size:23px;line-height:1}
-    .service small{font-size:11px;font-weight:800;line-height:1.18;color:var(--ink)}
+/* ---------- Vitrina ---------- */
+.shop-scroll{display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scroll-snap-type:x mandatory}
+.product{flex:0 0 232px;background:#fff;border:1px solid var(--linea);border-radius:12px;
+  overflow:hidden;box-shadow:var(--sombra);scroll-snap-align:start;position:relative;
+  display:flex;flex-direction:column}
+.product img{height:132px;width:100%;object-fit:cover}
+.ribbon{position:absolute;left:0;top:10px;background:var(--naranja);color:#fff;
+  font-family:"Barlow Condensed";font-size:11px;letter-spacing:.12em;padding:4px 10px;
+  border-radius:0 6px 6px 0;z-index:2}
+.p-body{padding:12px;display:flex;flex-direction:column;flex:1}
+.p-body b{font-family:"Barlow Condensed";font-size:19px;color:var(--azul-700)}
+.p-desc{font-size:12.5px;color:var(--muted);line-height:1.4;margin:3px 0 8px}
+.p-price{font-family:"Barlow Condensed";font-size:22px;font-weight:800;color:var(--naranja-osc)}
+.p-note{font-size:11.5px;color:var(--muted);margin-bottom:9px}
+.p-body .btn{margin-top:auto;padding:10px;font-size:15px}
 
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      padding:16px;
-      box-shadow:0 8px 22px rgba(14,42,71,.07);
-    }
-    .quick-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .quick{
-      text-align:left;
-      min-height:84px;
-      border-radius:var(--radius);
-      padding:14px;
-      color:#fff;
-      background:linear-gradient(135deg,var(--navy),var(--navy-2));
-    }
-    .quick.sky{background:linear-gradient(135deg,#148fc1,var(--sky))}
-    .quick.orange{background:linear-gradient(135deg,#d97306,var(--orange));color:#321c00}
-    .quick b{display:block}
-    .quick small{display:block;margin-top:5px;line-height:1.35;opacity:.9}
+/* ---------- Confianza y galería ---------- */
+.trust{display:flex;gap:13px;align-items:flex-start}
+.avatar-photo{width:74px;height:74px;border-radius:12px;object-fit:cover;flex:none;
+  border:3px solid var(--naranja)}
+.trust b{display:block;font-family:"Barlow Condensed";font-size:19px;color:var(--azul-700)}
+.trust small{font-size:13px;color:var(--muted);line-height:1.45;display:block;margin-top:3px}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.badge{background:#FFF2E0;color:var(--naranja-osc);border:1px solid #FBD9AE;border-radius:999px;
+  padding:3px 10px;font-family:"Barlow Condensed";font-size:11.5px;letter-spacing:.1em;font-weight:700}
+.gallery{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.g-item{border:0;padding:0;background:#fff;border-radius:12px;overflow:hidden;cursor:pointer;
+  box-shadow:var(--sombra);text-align:left;font:inherit}
+.g-item img{height:112px;width:100%;object-fit:cover}
+.g-item small{display:block;padding:8px 10px;font-size:12px;font-weight:600;color:var(--azul-700)}
 
-    .trust{display:flex;gap:13px;align-items:center}
-    .avatar{
-      width:70px;height:70px;border-radius:15px;background:var(--navy);
-      color:#fff;display:grid;place-items:center;font-weight:900;font-size:22px;
-      border:3px solid var(--orange);flex:none;
-    }
-    .trust b{display:block;line-height:1.25}
-    .trust small{display:block;margin-top:4px;color:var(--muted);line-height:1.42}
-    .badges{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
-    .badge{font-size:10px;font-weight:900;color:#8a5200;background:#fff1dd;border-radius:7px;padding:5px 7px}
+.link-list{display:grid;gap:9px}
+.site-link{display:flex;justify-content:space-between;align-items:center;background:#fff;
+  border:1px solid var(--linea);border-radius:12px;padding:13px 15px;box-shadow:0 6px 16px rgba(6,28,58,.06)}
+.site-link b{display:block;font-family:"Barlow Condensed";font-size:18px;color:var(--azul-700)}
+.site-link small{font-size:12.5px;color:var(--muted)}
+.site-link span{color:var(--naranja);font-size:22px}
 
-    .photo-strip{
-      display:grid;
-      grid-template-columns:1.25fr 1fr;
-      gap:10px;
-    }
-    .photo-card{
-      position:relative;
-      min-height:142px;
-      border-radius:var(--radius);
-      overflow:hidden;
-      background:#d8e4ef;
-      box-shadow:0 8px 22px rgba(14,42,71,.09);
-    }
-    .photo-card img{
-      width:100%;
-      height:100%;
-      min-height:142px;
-      object-fit:cover;
-      display:block;
-    }
-    .photo-card small{
-      position:absolute;
-      left:10px;
-      right:10px;
-      bottom:10px;
-      background:rgba(14,42,71,.82);
-      color:#fff;
-      border-radius:9px;
-      padding:7px 8px;
-      font-weight:800;
-      font-size:11px;
-      line-height:1.25;
-    }
-    .photo-stack{display:grid;gap:10px}
-    .photo-stack .photo-card{min-height:66px}
-    .photo-stack .photo-card img{min-height:66px}
+/* ---------- Sub-cabecera ---------- */
+.subtop{background:linear-gradient(150deg,var(--azul-900),var(--azul-500));color:#fff;
+  padding:14px 16px;display:flex;gap:12px;align-items:center;border-bottom:4px solid var(--naranja)}
+.back{background:rgba(255,255,255,.14);border:0;color:#fff;width:38px;height:38px;border-radius:10px;
+  font-size:24px;line-height:1;cursor:pointer;flex:none}
+.subtop h2{font-size:24px;font-weight:800}
+.subtop small{font-size:12.5px;color:#B7CCE8}
 
-    .link-list{display:grid;gap:9px}
-    .site-link{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:12px;
-      color:var(--ink);
-    }
-    .site-link b{display:block;font-size:13px}
-    .site-link small{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.3}
-    .site-link span{font-size:18px;color:var(--orange);font-weight:900}
+/* ---------- Formulario ---------- */
+.form{padding:14px}
+.mini-steps{display:grid;gap:8px;margin-bottom:14px}
+.mini-step{display:flex;gap:11px;background:#fff;border:1px solid var(--linea);border-radius:12px;padding:11px 13px}
+.mini-step>span{width:26px;height:26px;border-radius:50%;background:var(--naranja);color:#fff;
+  display:grid;place-items:center;font-family:"Barlow Condensed";font-weight:800;flex:none;font-size:15px}
+.mini-step b{display:block;font-size:14.5px;color:var(--azul-700)}
+.mini-step small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.field{margin-bottom:13px}
+.field label{display:block;font-family:"Barlow Condensed";text-transform:uppercase;
+  letter-spacing:.13em;font-size:12px;font-weight:700;color:var(--azul-500);margin-bottom:5px}
+.field label .req{color:var(--alerta)}
+.field input,.field select,.field textarea{width:100%;padding:13px;border:1px solid var(--linea);
+  border-radius:10px;font:inherit;font-size:16px;background:#fff;color:var(--texto)}
+.field textarea{min-height:86px;resize:vertical}
+.field.error input,.field.error select,.field.error textarea{border-color:var(--alerta);background:#FEF5F5}
+.err-msg{color:var(--alerta);font-size:12.5px;margin-top:4px;display:none}
+.field.error .err-msg{display:block}
+.hint{font-size:12.5px;color:var(--muted);margin-top:5px;line-height:1.4}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip{background:#fff;border:2px solid var(--linea);border-radius:999px;padding:8px 14px;
+  font:inherit;font-size:14px;cursor:pointer;color:var(--azul-700)}
+.chip.active{background:var(--azul-700);color:#fff;border-color:var(--azul-700)}
+.photo-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.photo-thumb{width:64px;height:64px;border-radius:9px;object-fit:cover;border:2px solid var(--linea)}
+.summary{background:#fff;border-left:5px solid var(--naranja);border-radius:10px;padding:14px;
+  margin-top:14px;font-size:14.5px;line-height:1.55;box-shadow:var(--sombra)}
+.summary b{color:var(--azul-700)}
+.riesgo{display:inline-block;padding:2px 10px;border-radius:999px;font-family:"Barlow Condensed";
+  font-weight:800;letter-spacing:.1em;font-size:12px;color:#fff}
+.riesgo.rojo{background:var(--alerta)}.riesgo.ambar{background:var(--warn);color:#3A2A00}
+.riesgo.verde{background:var(--ok)}
 
-    .subtop{
-      background:var(--navy);
-      color:#fff;
-      padding:16px 18px;
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-    .back{
-      width:40px;height:40px;border-radius:12px;background:rgba(255,255,255,.11);
-      color:#fff;font-size:22px;
-    }
-    .subtop h2{margin:0;font-size:18px}
-    .subtop small{color:#c7ddf1}
+/* ---------- Pedidos ---------- */
+.empty{text-align:center;padding:34px 20px;color:var(--muted)}
+.empty .big{font-size:44px;margin-bottom:8px}
+.order{background:#fff;border:1px solid var(--linea);border-left:5px solid var(--naranja);
+  border-radius:12px;padding:14px;margin-bottom:10px;box-shadow:var(--sombra)}
+.order-head{display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+.order-head b{font-family:"Barlow Condensed";font-size:19px;color:var(--azul-700)}
+.order-head span{font-size:12px;color:var(--muted);white-space:nowrap}
+.order p{margin:6px 0 0;font-size:13.5px;color:var(--muted);line-height:1.45}
+.order .acts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:11px}
+.order .acts .btn{padding:9px;font-size:14px}
+.pill{display:inline-block;border-radius:999px;padding:3px 10px;font-family:"Barlow Condensed";
+  font-size:11.5px;letter-spacing:.1em;font-weight:700}
+.pill.ok{background:#E6F6EE;color:var(--ok)}
+.pill.warn{background:#FFF6E0;color:#8A6400}
+.pill.bad{background:#FDECEC;color:var(--alerta)}
 
-    .form{padding:18px}
-    .field{margin-bottom:14px}
-    label{display:block;font-weight:800;font-size:13px;margin-bottom:7px}
-    input,select,textarea{
-      width:100%;
-      border:1.5px solid var(--line);
-      border-radius:12px;
-      background:#fff;
-      color:var(--ink);
-      padding:12px;
-      min-height:46px;
-    }
-    textarea{min-height:92px;resize:vertical}
-    .two{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    .hint{font-size:12px;color:var(--muted);line-height:1.4;margin-top:6px}
-    .chips{display:flex;flex-wrap:wrap;gap:8px}
-    .chip{
-      border:1.5px solid var(--line);
-      background:#fff;
-      border-radius:999px;
-      min-height:40px;
-      padding:9px 12px;
-      color:var(--ink);
-      font-weight:700;
-      font-size:13px;
-    }
-    .chip.active{border-color:var(--orange);background:#fff1dd;color:#7a4900}
+/* ---------- Certificados ---------- */
+.bar{height:9px;background:var(--nieve);border-radius:999px;overflow:hidden;margin:9px 0}
+.bar i{display:block;height:100%;border-radius:999px}
+.cert-head{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cert-head b{font-family:"Barlow Condensed";font-size:19px;color:var(--azul-700)}
+.cert-list{display:grid;gap:11px}
+.cert-list small{font-size:13px;color:var(--muted);line-height:1.45;display:block}
+.resultado{background:var(--nieve);border-radius:10px;padding:12px;margin-top:11px;font-size:14px;line-height:1.5}
 
-    .summary{
-      background:#071f17;
-      color:#86efac;
-      border-radius:var(--radius);
-      padding:15px;
-      font-family:Consolas,Monaco,monospace;
-      font-size:13px;
-      line-height:1.55;
-      margin-top:16px;
-    }
-    .summary b{color:#ffc46b}
+/* ---------- Cuenta ---------- */
+.account-row{display:flex;justify-content:space-between;align-items:center;gap:11px;
+  padding:13px 0;border-bottom:1px solid var(--linea)}
+.account-row:last-child{border-bottom:0}
+.account-row b{display:block;font-family:"Barlow Condensed";font-size:18px;color:var(--azul-700)}
+.account-row small{font-size:12.5px;color:var(--muted);line-height:1.4}
+.account-row .btn{flex:none;padding:9px 14px;font-size:14px}
 
-    .mini-steps{
-      display:grid;
-      grid-template-columns:1fr;
-      gap:8px;
-      margin-bottom:16px;
-    }
-    .mini-step{
-      display:flex;
-      gap:10px;
-      align-items:flex-start;
-      background:#fff;
-      border:1px solid var(--line);
-      border-radius:12px;
-      padding:11px 12px;
-    }
-    .mini-step span{
-      width:24px;
-      height:24px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      flex:none;
-      background:#fff1dd;
-      color:#7a4900;
-      font-weight:900;
-      font-size:12px;
-    }
-    .mini-step b{display:block;font-size:13px}
-    .mini-step small{display:block;color:var(--muted);line-height:1.35;margin-top:2px}
+/* ---------- Navegación inferior ---------- */
+.nav{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(560px,100%);
+  background:rgba(255,255,255,.97);backdrop-filter:blur(12px);border-top:1px solid var(--linea);
+  display:grid;grid-template-columns:repeat(5,1fr);align-items:end;z-index:50;
+  padding-bottom:env(safe-area-inset-bottom)}
+.nav button{background:none;border:0;cursor:pointer;font:inherit;font-size:10.5px;font-weight:600;
+  color:var(--muted);padding:9px 2px 10px;display:flex;flex-direction:column;align-items:center;gap:2px;
+  border-top:3px solid transparent}
+.nav button span{font-size:18px;line-height:1}
+.nav button.on{color:var(--naranja-osc);border-top-color:var(--naranja)}
+.nav button.main{background:var(--naranja);color:#fff;width:56px;height:56px;border-radius:50%;
+  font-size:26px;margin:0 auto 10px;box-shadow:0 10px 24px rgba(242,140,30,.42);
+  justify-content:center;border-top:0;padding:0}
 
-    .account-row{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:12px;
-      border-bottom:1px solid var(--line);
-      padding:12px 0;
-    }
-    .account-row:last-child{border-bottom:0}
-    .account-row b{display:block}
-    .account-row small{display:block;color:var(--muted);margin-top:3px;line-height:1.35}
-    .account-row button{flex:none}
-
-    .timeline{padding:18px}
-    .step-card{
-      display:grid;
-      grid-template-columns:32px 1fr;
-      gap:12px;
-      padding:12px 0;
-      border-bottom:1px solid var(--line);
-    }
-    .step-card:last-child{border-bottom:0}
-    .dot{
-      width:28px;height:28px;border-radius:50%;display:grid;place-items:center;
-      background:#dce6f0;color:#fff;font-weight:900;
-    }
-    .step-card.done .dot{background:var(--ok)}
-    .step-card.now .dot{background:var(--orange);color:#3b2300}
-    .step-card b{display:block}
-    .step-card small{display:block;margin-top:3px;color:var(--muted);line-height:1.35}
-
-    .cert-list{display:grid;gap:12px}
-    .cert-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
-    .pill{font-size:11px;font-weight:900;border-radius:999px;padding:5px 8px;white-space:nowrap}
-    .pill.warn{background:#fff3d5;color:#8a5b00}
-    .pill.ok{background:#dff8ea;color:#08743a}
-    .bar{height:8px;background:#e9eef5;border-radius:999px;overflow:hidden;margin:12px 0}
-    .bar i{display:block;height:100%;border-radius:999px}
-
-    .nav{
-      position:fixed;
-      left:50%;
-      bottom:0;
-      transform:translateX(-50%);
-      width:100%;
-      max-width:440px;
-      background:rgba(255,255,255,.96);
-      border-top:1px solid var(--line);
-      display:grid;
-      grid-template-columns:1fr 1fr 72px 1fr 1fr;
-      align-items:center;
-      padding:8px 6px calc(8px + env(safe-area-inset-bottom));
-      backdrop-filter:blur(12px);
-    }
-    @media (min-width:520px){.nav{bottom:24px;border-radius:0 0 32px 32px}}
-    .nav button{background:transparent;color:var(--muted);font-size:10.5px;font-weight:800;padding:5px}
-    .nav button span{display:block;font-size:21px;margin-bottom:2px}
-    .nav button.on{color:var(--navy)}
-    .nav .main{
-      width:58px;height:58px;border-radius:50%;
-      background:var(--orange);color:#3b2300;
-      margin:-28px auto 0;
-      box-shadow:0 10px 24px rgba(247,148,29,.45),0 0 0 6px var(--paper);
-      font-size:25px;
-    }
-
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:86px;
-      transform:translateX(-50%) translateY(20px);
-      max-width:390px;
-      width:calc(100% - 28px);
-      background:#102f4d;
-      color:#fff;
-      border-radius:14px;
-      padding:13px 14px;
-      box-shadow:var(--shadow);
-      opacity:0;
-      pointer-events:none;
-      transition:.2s ease;
-      font-size:13px;
-      line-height:1.35;
-    }
-    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-
-    /* --- logo oficial + pill TecGo --- */
-    .brand-logo{height:48px;width:auto;background:#fff;border-radius:12px;padding:5px 9px;display:block;box-shadow:0 8px 22px rgba(0,0,0,.22)}
-    .pill-tecgo{display:inline-flex;align-items:center;gap:5px;margin-top:6px;background:rgba(247,148,29,.16);border:1px solid rgba(247,148,29,.55);color:#ffd9a3;font-size:11px;font-weight:800;border-radius:999px;padding:4px 10px;letter-spacing:.06em}
-    .pill-tecgo b{color:var(--orange)}
-
-    /* --- titular rotativo --- */
-    .hero h1{transition:opacity .35s ease}
-    .hero h1.fade{opacity:0}
-
-    /* --- contadores --- */
-    .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-top:16px}
-    .stat{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:11px 6px;text-align:center}
-    .stat b{display:block;font-size:20px;color:var(--orange);font-family:Consolas,Monaco,monospace}
-    .stat small{display:block;margin-top:2px;font-size:10.5px;color:#cfe2f2;font-weight:700;letter-spacing:.04em}
-
-    /* --- vitrina de termas --- */
-    .shop-scroll{display:flex;gap:11px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .shop-scroll::-webkit-scrollbar{display:none}
-    .product{flex:0 0 214px;scroll-snap-align:start;background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 8px 22px rgba(14,42,71,.08);display:flex;flex-direction:column}
-    .product img{width:100%;height:118px;object-fit:cover;display:block}
-    .product .p-body{padding:11px 12px 12px;display:flex;flex-direction:column;gap:4px;flex:1}
-    .product b{font-size:13.5px}
-    .product .p-desc{font-size:11.5px;color:var(--muted);line-height:1.35;flex:1}
-    .product .p-price{font-size:13px;font-weight:900;color:#0b7a43}
-    .product .btn{min-height:40px;padding:9px 10px;font-size:12.5px;margin-top:7px}
-    .ribbon{position:absolute;top:10px;left:10px;background:var(--orange);color:#3b2300;font-size:10px;font-weight:900;border-radius:7px;padding:4px 8px;letter-spacing:.05em}
-    .product{position:relative}
-
-    /* --- galeria de trabajos --- */
-    .gallery{display:flex;gap:10px;overflow-x:auto;padding:2px 2px 8px;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
-    .gallery::-webkit-scrollbar{display:none}
-    .g-item{flex:0 0 168px;scroll-snap-align:start;position:relative;border-radius:var(--radius);overflow:hidden;background:#d8e4ef;box-shadow:0 8px 20px rgba(14,42,71,.09)}
-    .g-item img{width:100%;height:126px;object-fit:cover;display:block}
-    .g-item small{position:absolute;left:8px;right:8px;bottom:8px;background:rgba(14,42,71,.84);color:#fff;border-radius:8px;padding:6px 7px;font-weight:800;font-size:10.5px;line-height:1.25}
-
-    /* --- foto del ingeniero --- */
-    .avatar-photo{width:70px;height:70px;border-radius:15px;object-fit:cover;border:3px solid var(--orange);flex:none;display:block}
-
-    /* --- banner e instrucciones de instalacion --- */
-    .install-banner{display:none;margin-top:12px;background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:var(--radius);padding:14px;align-items:center;gap:12px}
-    .install-banner.show{display:flex}
-    .install-banner .ib-ico{width:44px;height:44px;border-radius:11px;background:#fff;flex:none;display:grid;place-items:center;overflow:hidden}
-    .install-banner .ib-ico img{width:38px;height:38px;object-fit:contain}
-    .install-banner b{display:block;font-size:13.5px}
-    .install-banner small{display:block;font-size:11.5px;color:#c9dcec;margin-top:2px;line-height:1.3}
-    .install-banner .btn{margin-left:auto;min-height:40px;padding:9px 12px;font-size:12.5px}
-    .modal-back{position:fixed;inset:0;background:rgba(7,26,44,.66);z-index:60;display:none;align-items:flex-end;justify-content:center}
-    .modal-back.show{display:flex}
-    .modal{width:100%;max-width:440px;background:#fff;border-radius:22px 22px 0 0;padding:20px 18px calc(20px + env(safe-area-inset-bottom))}
-    @media(min-width:520px){.modal{border-radius:22px;margin-bottom:40px}}
-    .modal h3{margin:0 0 6px;font-size:17px}
-    .modal p{margin:0 0 12px;font-size:13px;color:var(--muted);line-height:1.45}
-    .modal .mini-step{margin-bottom:8px}
-    .ios-share{display:inline-block;width:17px;height:17px;vertical-align:-3px}
-  </style>
+/* ---------- Avisos ---------- */
+.toast{position:fixed;left:50%;transform:translateX(-50%) translateY(20px);bottom:90px;
+  background:var(--azul-700);color:#fff;padding:12px 18px;border-radius:10px;font-size:14px;
+  opacity:0;pointer-events:none;transition:.28s ease;z-index:80;max-width:88%;text-align:center}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+.install-banner{display:none;align-items:center;gap:11px;background:rgba(255,255,255,.10);
+  border:1px solid rgba(255,255,255,.2);border-radius:12px;padding:11px;margin-top:14px}
+.install-banner.show{display:flex}
+.ib-ico img{width:38px;border-radius:9px}
+.install-banner b{display:block;font-family:"Barlow Condensed";font-size:16px}
+.install-banner small{font-size:12px;color:#C6DAF2;display:block}
+.install-banner .btn{flex:none;padding:9px 14px;font-size:14px}
+.modal-back{position:fixed;inset:0;background:rgba(6,28,58,.62);display:none;align-items:center;
+  justify-content:center;padding:20px;z-index:90}
+.modal-back.show{display:flex}
+.modal{background:#fff;border-radius:16px;padding:20px;max-width:420px;width:100%;max-height:86vh;overflow:auto}
+.modal h3{font-size:23px;color:var(--azul-700);margin-bottom:8px}
+.modal p{font-size:14px;color:var(--muted);margin:0 0 13px}
+.ios-share{width:17px;height:17px;vertical-align:-3px}
+.foot-note{text-align:center;color:var(--muted);font-size:12.5px;padding:18px 14px 6px;line-height:1.5}
+</style>
 </head>
 <body>
-  <main class="phone">
-    <section class="view active" id="home">
-      <header class="hero">
-        <div class="brand">
-          <div>
-            <img class="brand-logo" src="assets/logo.png" alt="ENERGÉTICOS — Servicios del Sector Eléctrico">
-            <span class="pill-tecgo">Plataforma <b>TecGo</b> · 24/7</span>
-          </div>
-          <div class="zone">Huaraz · Independencia</div>
-        </div>
-        <h1 id="hero-line">Tu técnico correcto, sin perder tiempo.</h1>
-        <p>Describe el problema, envia fotos y ENERGETICOS prepara la atencion con diagnostico guiado, herramientas y respaldo de ingenieria.</p>
-        <div class="cta-row">
-          <button class="btn btn-primary" onclick="openRequest('Emergencia')">Pedir auxilio</button>
-          <button class="btn btn-light" onclick="openWhatsApp()">WhatsApp</button>
-        </div>
-        <div class="stats" aria-label="Nuestra experiencia">
-          <div class="stat"><b data-count="30">0</b><small>AÑOS DE OBRA</small></div>
-          <div class="stat"><b>7.56&nbsp;Ω</b><small>MEDICIÓN REAL</small></div>
-          <div class="stat"><b data-count="24">0</b><small>HORAS AL DÍA</small></div>
-        </div>
-        <div class="install-banner" id="install-banner">
-          <span class="ib-ico"><img src="icons/icon-192.png" alt=""></span>
-          <span><b>Lleva ENERGÉTICOS en tu celular</b><small>Instala la app y pide auxilio en dos toques.</small></span>
-          <button class="btn btn-primary" onclick="installApp()">Instalar</button>
-        </div>
-      </header>
+<main class="phone">
 
-      <div class="sos">
-        <div><b>Emergencia electrica o fuga</b><small>Prioridad para hogares, hoteles y negocios.</small></div>
-        <button class="btn" onclick="openRequest('Emergencia')">Ahora</button>
+<!-- ==================== INICIO ==================== -->
+<section class="view active" id="home">
+  <header class="hero">
+    <div class="brand">
+      <div>
+        <img class="brand-logo" src="assets/logo.png" alt="ENERGÉTICOS · Servicios del Sector Eléctrico">
+        <span class="pill-tecgo">Plataforma <b>TecGo</b> · 24 h</span>
       </div>
+      <div class="zone">Huaraz · Independencia</div>
+    </div>
+    <h1 id="hero-line">Tu técnico correcto, sin perder tiempo.</h1>
+    <p>Describe el problema, marca el síntoma y ENERGÉTICOS prepara la atención con diagnóstico guiado, herramientas y respaldo de ingeniería.</p>
+    <div class="cta-row">
+      <button class="btn btn-primary" onclick="openRequest('Emergencia')">Pedir auxilio</button>
+      <a class="btn btn-call" href="tel:+51942899919">Llamar ahora</a>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-count="30" data-suffix="+">0</b><small>AÑOS DE OBRA</small></div>
+      <div class="stat"><b>7.56 Ω</b><small>MEDICIÓN REAL</small></div>
+      <div class="stat"><b data-count="24">0</b><small>HORAS AL DÍA</small></div>
+    </div>
+    <div class="install-banner" id="install-banner">
+      <span class="ib-ico"><img src="icons/icon-192.png" alt=""></span>
+      <span><b>Lleva ENERGÉTICOS en tu celular</b><small>Instala la app y pide auxilio en dos toques.</small></span>
+      <button class="btn btn-primary" onclick="installApp()">Instalar</button>
+    </div>
+  </header>
 
-      <section class="section">
-        <div class="section-head"><h2>Servicios</h2><span>Fase 1</span></div>
-        <div class="services">
-          <button class="service" onclick="openRequest('Electricidad')"><span class="ico">⚡</span><small>Electricidad</small></button>
-          <button class="service" onclick="openRequest('Agua caliente')"><span class="ico">♨</span><small>Termas</small></button>
-          <button class="service" onclick="openRequest('Sanitarias')"><span class="ico">💧</span><small>Sanitarias</small></button>
-          <button class="service" onclick="openRequest('Pozo a tierra')"><span class="ico">⏚</span><small>Pozo tierra</small></button>
-          <button class="service" onclick="openRequest('Certificacion')"><span class="ico">✓</span><small>Certificados</small></button>
-          <button class="service" onclick="openRequest('Solar')"><span class="ico">☀</span><small>Solar</small></button>
-          <button class="service" onclick="openRequest('Pintura')"><span class="ico">▣</span><small>Pintura</small></button>
-          <button class="service" onclick="openRequest('Otros servicios')"><span class="ico">＋</span><small>Otros</small></button>
-        </div>
-      </section>
+  <div class="sos">
+    <div><b>Emergencia eléctrica o fuga</b><small>Prioridad para hogares, hoteles y negocios.</small></div>
+    <button class="btn" onclick="openRequest('Emergencia')">Ahora</button>
+  </div>
 
-      <section class="section">
-        <div class="section-head"><h2>Accesos rapidos</h2><span>Operativo</span></div>
-        <div class="quick-grid">
-          <button class="quick orange" onclick="openRequest('Diagnostico con fotos')"><b>Diagnostico</b><small>Formulario guiado con fotos y sintomas.</small></button>
-          <button class="quick sky" onclick="showView('certs','nav-certs')"><b>Certificados</b><small>Pozo a tierra, luxometria e informes.</small></button>
-          <button class="quick" onclick="showView('track','nav-orders')"><b>Pedido activo</b><small>Estado, tecnico asignado y cierre.</small></button>
-          <button class="quick" onclick="showView('account','nav-account')"><b>Empresas</b><small>Mantenimiento programado y trazabilidad.</small></button>
-        </div>
-      </section>
+  <section class="section">
+    <div class="section-head"><h2>Servicios</h2><span>Elige uno</span></div>
+    <div class="services">
+      <button class="service" onclick="openRequest('Electricidad')"><span class="ico">⚡</span><small>Electricidad</small></button>
+      <button class="service" onclick="openRequest('Agua caliente')"><span class="ico">♨</span><small>Termas</small></button>
+      <button class="service" onclick="openRequest('Sanitarias')"><span class="ico">💧</span><small>Sanitarias</small></button>
+      <button class="service" onclick="openRequest('Pozo a tierra')"><span class="ico">⏚</span><small>Pozo tierra</small></button>
+      <button class="service" onclick="openRequest('Certificación')"><span class="ico">✓</span><small>Certificados</small></button>
+      <button class="service" onclick="openRequest('Solar')"><span class="ico">☀</span><small>Solar</small></button>
+      <button class="service" onclick="openRequest('Pintura')"><span class="ico">▣</span><small>Pintura</small></button>
+      <button class="service" onclick="openRequest('Otros servicios')"><span class="ico">＋</span><small>Otros</small></button>
+    </div>
+  </section>
 
-      <section class="section">
-        <div class="section-head"><h2>Termas solares en oferta</h2><span>YACUSOL</span></div>
-        <div class="shop-scroll">
-          <div class="product">
-            <span class="ribbon">MÁS PEDIDA</span>
-            <img src="assets/photos/foto-13.jpg" alt="Terma solar de acero inoxidable instalada en Huaraz">
-            <div class="p-body">
-              <b>Terma solar 120 L</b>
-              <span class="p-desc">Para 2 a 3 personas. Paquete todo en uno: terma + instalación.</span>
-              <span class="p-price">Desde S/ 2,590</span>
-              <button class="btn btn-primary" onclick="quoteProduct('Terma solar YACUSOL 120 L')">Cotizar ahora</button>
-            </div>
-          </div>
-          <div class="product">
-            <img src="assets/photos/foto-13.jpg" alt="Terma solar familiar YACUSOL">
-            <div class="p-body">
-              <b>Terma solar 200–300 L</b>
-              <span class="p-desc">Familias grandes, hospedajes y hoteles. Agua caliente sin recibo de luz.</span>
-              <span class="p-price">Precio de campaña</span>
-              <button class="btn btn-primary" onclick="quoteProduct('Terma solar YACUSOL 200-300 L')">Cotizar ahora</button>
-            </div>
-          </div>
-          <div class="product">
-            <img src="assets/photos/foto-01.jpg" alt="Instalación de paneles solares">
-            <div class="p-body">
-              <b>Paneles fotovoltaicos</b>
-              <span class="p-desc">Genera tu propia energía. Dimensionamos con tu recibo de luz.</span>
-              <span class="p-price">Cotización a medida</span>
-              <button class="btn btn-primary" onclick="quoteProduct('Sistema de paneles fotovoltaicos')">Cotizar ahora</button>
-            </div>
-          </div>
-          <div class="product">
-            <img src="assets/photos/foto-16.jpg" alt="Pozo a tierra con registro">
-            <div class="p-body">
-              <b>Protocolo pozo a tierra</b>
-              <span class="p-desc">Medición certificada y protocolo firmado por ingeniero CIP para tu ITSE.</span>
-              <span class="p-price">Reserva tu medición</span>
-              <button class="btn btn-primary" onclick="quoteProduct('Protocolo de pozo a tierra con medición')">Cotizar ahora</button>
-            </div>
-          </div>
-        </div>
-      </section>
+  <section class="section">
+    <div class="section-head"><h2>Accesos rápidos</h2><span>Lo más usado</span></div>
+    <div class="quick-grid">
+      <button class="quick orange" onclick="openRequest('Electricidad')"><b>Diagnóstico</b><small>Formulario guiado con síntomas y fotos.</small></button>
+      <button class="quick sky" onclick="showView('certs','nav-certs')"><b>Certificados</b><small>Revisa si tu protocolo sigue vigente.</small></button>
+      <button class="quick" onclick="showView('orders','nav-orders')"><b>Mis solicitudes</b><small>Lo que ya enviaste desde este celular.</small></button>
+      <button class="quick gold" onclick="showView('account','nav-account')"><b>Mis datos</b><small>Guárdalos y no los vuelvas a escribir.</small></button>
+    </div>
+  </section>
 
-      <section class="section">
-        <div class="card trust">
-          <img class="avatar-photo" src="assets/ingeniero.jpg" alt="Ing. José Rafael Zeña Peche en campo">
-          <div>
-            <b>Ing. José Rafael Zeña Peche · CIP 85540</b>
-            <small>Más de 30 años en instalaciones eléctricas hospitalarias e industriales. Corporación RyC Contratistas Generales S.A.C. · RUC 20533666273.</small>
-            <div class="badges"><span class="badge">CIP 85540</span><span class="badge">Huaraz</span><span class="badge">24/7</span></div>
-          </div>
-        </div>
-      </section>
+  <section class="section">
+    <div class="section-head"><h2>Productos y servicios</h2><span>YACUSOL</span></div>
+    <div class="shop-scroll" id="shopScroll"></div>
+    <a class="btn btn-line btn-full" href="https://energeticos2023.github.io/Yacusol-app/" target="_blank" rel="noopener">Ver la lista oficial de precios</a>
+  </section>
 
-      <section class="section">
-        <div class="section-head"><h2>Trabajos reales</h2><span>Portafolio</span></div>
-        <div class="gallery">
-          <button class="g-item" onclick="openRequest('Solar')"><img src="assets/photos/foto-01.jpg" alt="Instalación de paneles solares"><small>Paneles solares en obra</small></button>
-          <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-17.jpg" alt="Telurómetro marcando 7.56 ohmios"><small>Medición real: 7.56 Ω</small></button>
-          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-04.jpg" alt="Inspección de tablero eléctrico"><small>Tableros eléctricos</small></button>
-          <button class="g-item" onclick="openRequest('Agua caliente')"><img src="assets/photos/foto-13.jpg" alt="Terma solar instalada"><small>Termas solares YACUSOL</small></button>
-          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-02.jpg" alt="Medición con pinza amperimétrica"><small>Mediciones certificadas</small></button>
-          <button class="g-item" onclick="openRequest('Sanitarias')"><img src="assets/photos/foto-05.jpg" alt="Mantenimiento de bombas de agua"><small>Bombas y sanitarias</small></button>
-          <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-16.jpg" alt="Registro de pozo a tierra"><small>Pozos a tierra</small></button>
-          <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-11.jpg" alt="Obra Centro de Salud Yungar"><small>Obras institucionales</small></button>
-        </div>
-      </section>
-
-      <section class="section">
-        <div class="section-head"><h2>Paginas oficiales</h2><span>Visitar</span></div>
-        <div class="link-list">
-          <a class="site-link" href="https://energeticos2023.github.io/energeticos/" target="_blank" rel="noopener"><div><b>ENERGETICOS</b><small>Servicios del Sector Electrico</small></div><span>›</span></a>
-          <a class="site-link" href="https://energeticos2023.github.io/YACUSOL/" target="_blank" rel="noopener"><div><b>YACUSOL</b><small>Termas solares en Huaraz</small></div><span>›</span></a>
-          <a class="site-link" href="https://energeticos2023.github.io/Yacusol-app/" target="_blank" rel="noopener"><div><b>Mini-app de termas</b><small>Catalogo y mantenimiento YACUSOL</small></div><span>›</span></a>
-          <a class="site-link" href="https://www.facebook.com/INGENIEROS.RYC/" target="_blank" rel="noopener"><div><b>Facebook ENERGETICOS</b><small>Canal oficial de difusion y contacto</small></div><span>›</span></a>
-          <a class="site-link" href="https://www.facebook.com/people/Yacusol/61590174891879/" target="_blank" rel="noopener"><div><b>Facebook YACUSOL</b><small>Termas solares y novedades</small></div><span>›</span></a>
-        </div>
-      </section>
-    </section>
-
-    <section class="view" id="request">
-      <header class="subtop">
-        <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
-        <div><h2 id="request-title">Nueva solicitud</h2><small>Datos minimos para atender bien desde celular</small></div>
-      </header>
-      <form class="form" id="request-form">
-        <div class="mini-steps" aria-label="Pasos de solicitud">
-          <div class="mini-step"><span>1</span><div><b>Elige el servicio</b><small>La app cambia las preguntas segun electricidad, termas, sanitarias o certificados.</small></div></div>
-          <div class="mini-step"><span>2</span><div><b>Marca el sintoma</b><small>Solo toca lo que esta pasando. No necesitas saber el nombre tecnico.</small></div></div>
-          <div class="mini-step"><span>3</span><div><b>Envia por WhatsApp</b><small>ENERGETICOS recibe un resumen ordenado para responder mas rapido.</small></div></div>
-        </div>
-        <div class="two">
-          <div class="field">
-            <label for="client">Nombre</label>
-            <input id="client" name="client" autocomplete="name" placeholder="Cliente o empresa">
-          </div>
-          <div class="field">
-            <label for="phone">Celular</label>
-            <input id="phone" name="phone" inputmode="tel" autocomplete="tel" placeholder="WhatsApp">
-          </div>
-        </div>
-        <div class="field">
-          <label for="kind">Tipo de cliente</label>
-          <select id="kind" name="kind">
-            <option>Vivienda</option>
-            <option>Hotel / hospedaje</option>
-            <option>Comercio</option>
-            <option>Banco / entidad financiera</option>
-            <option>Colegio / institucion</option>
-            <option>Industria / obra</option>
-          </select>
-        </div>
-        <div class="two">
-          <div class="field">
-            <label for="service">Servicio</label>
-            <select id="service" name="service">
-              <option>Electricidad</option>
-              <option>Agua caliente</option>
-              <option>Sanitarias</option>
-              <option>Pozo a tierra</option>
-              <option>Certificacion</option>
-              <option>Solar</option>
-              <option>Pintura</option>
-              <option>Otros servicios</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="urgency">Urgencia</label>
-            <select id="urgency" name="urgency">
-              <option>Emergencia</option>
-              <option>Hoy</option>
-              <option>Esta semana</option>
-              <option>Programado</option>
-            </select>
-          </div>
-        </div>
-        <div class="field">
-          <label id="symptom-label">Sintomas frecuentes</label>
-          <div class="chips" id="symptoms"></div>
-          <div class="hint" id="symptom-help">Selecciona un servicio para ver sintomas especificos.</div>
-        </div>
-        <div class="field">
-          <label for="description">Descripcion</label>
-          <textarea id="description" name="description" placeholder="Cuente que ocurre, desde cuando, marca del equipo y si ya hubo reparacion."></textarea>
-          <div class="hint">En la version real aqui se cargaran fotos, video corto o nota de voz.</div>
-        </div>
-        <div class="field">
-          <label for="address">Direccion y referencia</label>
-          <textarea id="address" name="address" placeholder="Direccion, distrito, piso, referencia y horario disponible."></textarea>
-        </div>
-        <button type="button" class="btn btn-primary btn-full" onclick="buildRequest()">Generar solicitud por WhatsApp</button>
-        <button type="button" class="btn btn-line btn-full" onclick="showView('track','nav-orders')">Ver flujo de seguimiento</button>
-        <div class="summary" id="summary">
-          <b>Prediagnostico referencial</b><br>
-          Completa la solicitud para generar un resumen ordenado para ENERGETICOS.
-        </div>
-      </form>
-    </section>
-
-    <section class="view" id="track">
-      <header class="subtop">
-        <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
-        <div><h2>Seguimiento</h2><small>Pedido N. 0147 · demostracion</small></div>
-      </header>
-      <div class="timeline">
-        <div class="card">
-          <div class="step-card done"><div class="dot">✓</div><div><b>Recibido</b><small>Solicitud registrada con datos, sintomas y ubicacion.</small></div></div>
-          <div class="step-card done"><div class="dot">✓</div><div><b>Revisado</b><small>ENERGETICOS confirma nivel de riesgo y materiales probables.</small></div></div>
-          <div class="step-card now"><div class="dot">!</div><div><b>Asignado</b><small>Tecnico correcto segun especialidad, zona y disponibilidad.</small></div></div>
-          <div class="step-card"><div class="dot">4</div><div><b>En camino</b><small>Cliente recibe hora estimada, llamada o WhatsApp.</small></div></div>
-          <div class="step-card"><div class="dot">5</div><div><b>Cerrado</b><small>Fotos antes/despues, monto, garantia e informe si aplica.</small></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="view" id="certs">
-      <header class="subtop">
-        <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
-        <div><h2>Certificaciones</h2><small>Vencimientos e informes tecnicos</small></div>
-      </header>
-      <section class="section">
-        <div class="cert-list">
-          <div class="card">
-            <div class="cert-head"><b>Protocolo de pozo a tierra</b><span class="pill warn">Vence pronto</span></div>
-            <div class="bar"><i style="width:86%;background:var(--warn)"></i></div>
-            <small>Medicion, informe firmado y alerta anual para ITSE o licencia.</small>
-            <button class="btn btn-primary btn-full" onclick="openRequest('Certificacion')">Programar medicion</button>
-          </div>
-          <div class="card">
-            <div class="cert-head"><b>Estudio de iluminacion</b><span class="pill ok">Disponible</span></div>
-            <div class="bar"><i style="width:35%;background:var(--ok)"></i></div>
-            <small>Registro de luxometria para oficinas, comercios e industria.</small>
-            <button class="btn btn-line btn-full" onclick="openRequest('Luxometria')">Solicitar cotizacion</button>
-          </div>
-          <div class="card">
-            <div class="cert-head"><b>Informe tecnico</b><span class="pill ok">PDF</span></div>
-            <small>Fotos, descripcion, materiales, responsable tecnico y firma.</small>
-            <button class="btn btn-dark btn-full" onclick="showToast('Modulo documental preparado para la siguiente fase.')">Ver modulo</button>
-          </div>
-        </div>
-      </section>
-    </section>
-
-    <section class="view" id="account">
-      <header class="subtop">
-        <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
-        <div><h2>Cuenta</h2><small>Datos del cliente y de ENERGETICOS</small></div>
-      </header>
-      <section class="section">
-        <div class="card">
-          <div class="account-row">
-            <div><b>Mis datos</b><small>Nombre, celular, correo y direcciones frecuentes.</small></div>
-            <button class="btn btn-line" onclick="showToast('Aqui se editara el perfil del cliente.')">Editar</button>
-          </div>
-          <div class="account-row">
-            <div><b>Cuenta empresa</b><small>RUC, razon social, sedes, contacto y cotizaciones formales.</small></div>
-            <button class="btn btn-line" onclick="showToast('Aqui se activara el modo empresa o institucion.')">Activar</button>
-          </div>
-          <div class="account-row">
-            <div><b>ENERGETICOS</b><small>WhatsApp 942 899 919 · energeticos.ryc@gmail.com · Jr. Augusto B. Leguia 563.</small></div>
-            <button class="btn btn-primary" onclick="openWhatsApp()">Contactar</button>
-          </div>
-          <div class="account-row">
-            <div><b>Paginas web</b><small>ENERGETICOS, YACUSOL, mini-app y Facebook oficial.</small></div>
-            <button class="btn btn-line" onclick="showView('home','nav-home')">Ver</button>
-          </div>
-          <div class="account-row">
-            <div><b>Instalar en mi celular</b><small>Android y iPhone: usa la app como cualquier aplicación, con su propio ícono.</small></div>
-            <button class="btn btn-primary" onclick="installApp()">Instalar</button>
-          </div>
-        </div>
-      </section>
-      <section class="section">
-        <div class="card">
-          <b>Ruta simple de uso</b>
-          <small style="display:block;margin-top:7px;color:var(--muted);line-height:1.45">Primero elige servicio, luego marca sintoma, despues envia tus datos. Pedidos, Certificados y Cuenta quedan como accesos secundarios.</small>
-        </div>
-      </section>
-    </section>
-
-    <nav class="nav" aria-label="Navegacion principal">
-      <button id="nav-home" class="on" onclick="showView('home','nav-home')"><span>⌂</span>Inicio</button>
-      <button id="nav-orders" onclick="showView('track','nav-orders')"><span>☷</span>Pedidos</button>
-      <button class="main" onclick="openRequest('Emergencia')" aria-label="Pedir auxilio">⚡</button>
-      <button id="nav-certs" onclick="showView('certs','nav-certs')"><span>✓</span>Certificados</button>
-      <button id="nav-account" onclick="showView('account','nav-account')"><span>○</span>Cuenta</button>
-    </nav>
-    <div class="toast" id="toast"></div>
-
-    <div class="modal-back" id="install-modal" role="dialog" aria-modal="true" aria-labelledby="im-title">
-      <div class="modal">
-        <h3 id="im-title">Instala la app en tu celular</h3>
-        <p id="im-intro">Sigue estos pasos y ENERGÉTICOS quedará con su propio ícono, como cualquier aplicación.</p>
-        <div id="im-ios" style="display:none">
-          <div class="mini-step"><span>1</span><div><b>Abre esta página en Safari</b><small>En iPhone la instalación solo funciona desde Safari.</small></div></div>
-          <div class="mini-step"><span>2</span><div><b>Toca el botón Compartir <svg class="ios-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><rect x="4" y="11" width="16" height="10" rx="2"/></svg></b><small>Está en la barra inferior de Safari.</small></div></div>
-          <div class="mini-step"><span>3</span><div><b>Elige "Añadir a pantalla de inicio"</b><small>Confirma con "Añadir" y listo: verás el logo de ENERGÉTICOS.</small></div></div>
-        </div>
-        <div id="im-android" style="display:none">
-          <div class="mini-step"><span>1</span><div><b>Abre el menú de Chrome (⋮)</b><small>Arriba a la derecha del navegador.</small></div></div>
-          <div class="mini-step"><span>2</span><div><b>Toca "Añadir a pantalla principal" o "Instalar app"</b><small>Confirma y el ícono aparecerá en tu pantalla.</small></div></div>
-        </div>
-        <button class="btn btn-dark btn-full" onclick="closeInstallModal()">Entendido</button>
+  <section class="section">
+    <div class="card trust">
+      <img class="avatar-photo" src="assets/ingeniero.jpg" alt="Ing. José Rafael Zeña Peche en campo">
+      <div>
+        <b>Ing. José Rafael Zeña Peche · CIP 85540</b>
+        <small>Más de 30 años en instalaciones eléctricas hospitalarias e industriales. Corporación R y C Contratistas Generales S.A.C. · RUC 20533666273.</small>
+        <div class="badges"><span class="badge">CIP 85540</span><span class="badge">Huaraz</span><span class="badge">24 horas</span></div>
       </div>
     </div>
-  </main>
+  </section>
 
-  <script>
-    const companyPhone = "51942899919";
-    const serviceSymptoms = {
-      "Electricidad": {
-        label: "Sintomas electricos",
-        help: "Si hay humo, chispas o olor a quemado, evita manipular el tablero y pide emergencia.",
-        items: ["Salta la llave termica", "No hay luz", "Chispas en tomacorriente", "Olor a quemado", "Tablero caliente", "Necesito instalacion"]
-      },
-      "Agua caliente": {
-        label: "Sintomas de terma o ducha",
-        help: "Indica marca, tipo de terma y si es electrica, gas o solar.",
-        items: ["No calienta", "Agua tibia", "Fuga en terma", "Dispara la llave", "Baja presion", "Mantenimiento anual"]
-      },
-      "Sanitarias": {
-        label: "Sintomas sanitarios",
-        help: "Describe si la fuga es visible, oculta, en bano, cocina, tanque o cisterna.",
-        items: ["Hay fuga", "Baja presion", "Desague atorado", "Mal olor", "Bomba no prende", "Cisterna/tanque"]
-      },
-      "Pozo a tierra": {
-        label: "Necesidad de puesta a tierra",
-        help: "Ideal para comercios, bancos, hoteles e instituciones que necesitan medicion o mantenimiento.",
-        items: ["Medicion anual", "Alta resistencia", "Necesito protocolo", "Pozo existente", "Pozo nuevo", "Para ITSE"]
-      },
-      "Certificacion": {
-        label: "Tipo de certificado",
-        help: "Los certificados requieren datos del local, visita, medicion y firma responsable.",
-        items: ["Pozo a tierra", "Luxometria", "Conformidad electrica", "Informe tecnico", "Renovacion anual", "Cotizacion formal"]
-      },
-      "Solar": {
-        label: "Sintomas solares",
-        help: "Indica si es sistema termico, fotovoltaico, marca y capacidad si la conoces.",
-        items: ["No calienta", "Fuga en valvula", "Baja presion", "Panel sucio", "Inversor falla", "Mantenimiento"]
-      },
-      "Pintura": {
-        label: "Necesidad de pintura",
-        help: "Indica area aproximada, interior/exterior y si hay humedad o filtracion.",
-        items: ["Pintura interior", "Pintura exterior", "Humedad", "Filtracion", "Resane", "Cotizacion"]
-      },
-      "Otros servicios": {
-        label: "Cuéntanos que necesitas",
-        help: "Usa esta opcion cuando no encuentres el rubro. ENERGETICOS clasificara la solicitud.",
-        items: ["Soldadura", "Puertas/ventanas", "Cerrajeria", "Estructuras", "Mantenimiento general", "Otro"]
+  <section class="section">
+    <div class="section-head"><h2>Trabajos reales</h2><span>Portafolio</span></div>
+    <div class="gallery">
+      <button class="g-item" onclick="openRequest('Solar')"><img src="assets/photos/foto-01.jpg" alt="Instalación de paneles solares" loading="lazy"><small>Paneles solares en obra</small></button>
+      <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-17.jpg" alt="Telurómetro marcando 7.56 ohmios" loading="lazy"><small>Medición real: 7.56 Ω</small></button>
+      <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-04.jpg" alt="Inspección de tablero eléctrico" loading="lazy"><small>Tableros eléctricos</small></button>
+      <button class="g-item" onclick="openRequest('Agua caliente')"><img src="assets/photos/foto-13.jpg" alt="Terma solar instalada" loading="lazy"><small>Termas solares YACUSOL</small></button>
+      <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-02.jpg" alt="Medición con pinza amperimétrica" loading="lazy"><small>Mediciones certificadas</small></button>
+      <button class="g-item" onclick="openRequest('Sanitarias')"><img src="assets/photos/foto-05.jpg" alt="Mantenimiento de bombas de agua" loading="lazy"><small>Bombas y sanitarias</small></button>
+      <button class="g-item" onclick="openRequest('Pozo a tierra')"><img src="assets/photos/foto-16.jpg" alt="Registro de pozo a tierra" loading="lazy"><small>Pozos a tierra</small></button>
+      <button class="g-item" onclick="openRequest('Electricidad')"><img src="assets/photos/foto-11.jpg" alt="Obra en Centro de Salud Yungar" loading="lazy"><small>Obras institucionales</small></button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Páginas oficiales</h2><span>Visitar</span></div>
+    <div class="link-list">
+      <a class="site-link" href="https://energeticos2023.github.io/energeticos/" target="_blank" rel="noopener"><div><b>ENERGÉTICOS</b><small>Servicios del Sector Eléctrico</small></div><span>›</span></a>
+      <a class="site-link" href="https://energeticos2023.github.io/YACUSOL/" target="_blank" rel="noopener"><div><b>YACUSOL</b><small>Termas solares y lista oficial de precios</small></div><span>›</span></a>
+      <a class="site-link" href="https://energeticos2023.github.io/Yacusol-app/" target="_blank" rel="noopener"><div><b>App de termas</b><small>Catálogo, precios y mantenimiento</small></div><span>›</span></a>
+      <a class="site-link" href="https://www.facebook.com/INGENIEROS.RYC/" target="_blank" rel="noopener"><div><b>Facebook ENERGÉTICOS</b><small>Canal oficial de difusión y contacto</small></div><span>›</span></a>
+      <a class="site-link" href="https://www.facebook.com/people/Yacusol/61590174891879/" target="_blank" rel="noopener"><div><b>Facebook YACUSOL</b><small>Termas solares y novedades</small></div><span>›</span></a>
+    </div>
+  </section>
+
+  <p class="foot-note">ENERGÉTICOS · Jr. Augusto B. Leguía 563, Independencia, Huaraz<br>WhatsApp 942 899 919 · energeticos.ryc@gmail.com</p>
+</section>
+
+<!-- ==================== SOLICITUD ==================== -->
+<section class="view" id="request">
+  <header class="subtop">
+    <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
+    <div><h2 id="request-title">Nueva solicitud</h2><small>Solo lo necesario para atenderte bien</small></div>
+  </header>
+  <form class="form" id="request-form" novalidate>
+    <div class="mini-steps">
+      <div class="mini-step"><span>1</span><div><b>Elige el servicio</b><small>Las preguntas cambian según electricidad, termas, sanitarias o certificados.</small></div></div>
+      <div class="mini-step"><span>2</span><div><b>Marca el síntoma</b><small>Solo toca lo que está pasando. No necesitas saber el nombre técnico.</small></div></div>
+      <div class="mini-step"><span>3</span><div><b>Envía por WhatsApp</b><small>ENERGÉTICOS recibe un resumen ordenado y responde más rápido.</small></div></div>
+    </div>
+
+    <div class="two">
+      <div class="field" id="f-client">
+        <label for="client">Nombre <span class="req">*</span></label>
+        <input id="client" autocomplete="name" placeholder="Cliente o empresa">
+        <div class="err-msg">Escribe tu nombre o el de tu empresa.</div>
+      </div>
+      <div class="field" id="f-phone">
+        <label for="phone">Celular <span class="req">*</span></label>
+        <input id="phone" inputmode="numeric" autocomplete="tel" maxlength="9" placeholder="9 dígitos">
+        <div class="err-msg">Debe tener 9 dígitos y empezar en 9.</div>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="kind">Tipo de cliente</label>
+      <select id="kind">
+        <option>Vivienda</option><option>Hotel u hospedaje</option><option>Comercio</option>
+        <option>Banco o entidad financiera</option><option>Colegio o institución</option>
+        <option>Industria u obra</option>
+      </select>
+    </div>
+
+    <div class="two">
+      <div class="field">
+        <label for="service">Servicio</label>
+        <select id="service">
+          <option>Electricidad</option><option>Agua caliente</option><option>Sanitarias</option>
+          <option>Pozo a tierra</option><option>Certificación</option><option>Solar</option>
+          <option>Pintura</option><option>Otros servicios</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="urgency">Urgencia</label>
+        <select id="urgency">
+          <option>Emergencia</option><option>Hoy</option><option>Esta semana</option><option>Programado</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="field">
+      <label id="symptom-label">Síntomas frecuentes</label>
+      <div class="chips" id="symptoms"></div>
+      <div class="hint" id="symptom-help"></div>
+    </div>
+
+    <div class="field" id="f-description">
+      <label for="description">Descripción <span class="req">*</span></label>
+      <textarea id="description" placeholder="Cuéntanos qué ocurre, desde cuándo, la marca del equipo y si ya hubo alguna reparación."></textarea>
+      <div class="err-msg">Describe brevemente el problema (mínimo 10 caracteres).</div>
+    </div>
+
+    <div class="field">
+      <label for="photos">Fotos del problema</label>
+      <input type="file" id="photos" accept="image/*" multiple>
+      <div class="photo-row" id="photo-preview"></div>
+      <div class="hint">Las fotos ayudan al técnico a llevar la herramienta correcta. Después de enviar el resumen, adjúntalas en el mismo chat de WhatsApp.</div>
+    </div>
+
+    <div class="field" id="f-address">
+      <label for="address">Dirección y referencia <span class="req">*</span></label>
+      <textarea id="address" placeholder="Dirección, distrito, piso, referencia y horario en que puedes recibir al técnico."></textarea>
+      <div class="err-msg">Necesitamos la dirección para llegar.</div>
+    </div>
+
+    <button type="button" class="btn btn-wa btn-full" onclick="buildRequest()">Enviar solicitud por WhatsApp</button>
+    <a class="btn btn-call btn-full" href="tel:+51942899919">Prefiero llamar</a>
+
+    <div class="summary" id="summary">
+      <b>Resumen de tu solicitud</b><br>
+      Completa el formulario y aquí verás el resumen que recibirá ENERGÉTICOS.
+    </div>
+  </form>
+</section>
+
+<!-- ==================== MIS SOLICITUDES ==================== -->
+<section class="view" id="orders">
+  <header class="subtop">
+    <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
+    <div><h2>Mis solicitudes</h2><small>Guardadas en este celular</small></div>
+  </header>
+  <section class="section">
+    <div id="orders-list"></div>
+    <button class="btn btn-primary btn-full" onclick="openRequest('Electricidad')">Nueva solicitud</button>
+  </section>
+</section>
+
+<!-- ==================== CERTIFICADOS ==================== -->
+<section class="view" id="certs">
+  <header class="subtop">
+    <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
+    <div><h2>Certificados</h2><small>Vigencia e informes técnicos</small></div>
+  </header>
+  <section class="section">
+    <div class="cert-list">
+
+      <div class="card">
+        <div class="cert-head"><b>Protocolo de pozo a tierra</b><span class="pill warn">Vigencia 1 año</span></div>
+        <small>La medición de resistencia debe repetirse cada año. Indica la fecha de tu último protocolo y te decimos cuánto te queda.</small>
+        <div class="field" style="margin-top:11px">
+          <label for="certDate">Fecha del último protocolo</label>
+          <input type="date" id="certDate">
+        </div>
+        <button class="btn btn-dark btn-full" onclick="calcVigencia()">Calcular vigencia</button>
+        <div class="resultado hide" id="certResult"></div>
+        <button class="btn btn-primary btn-full" onclick="openRequest('Pozo a tierra')">Programar medición</button>
+      </div>
+
+      <div class="card">
+        <div class="cert-head"><b>Estudio de iluminación</b><span class="pill ok">Disponible</span></div>
+        <small>Registro de luxometría para oficinas, comercios e industria, con informe firmado por ingeniero colegiado.</small>
+        <button class="btn btn-line btn-full" onclick="openRequest('Certificación')">Solicitar cotización</button>
+      </div>
+
+      <div class="card">
+        <div class="cert-head"><b>Informe técnico</b><span class="pill ok">PDF</span></div>
+        <small>Fotos, descripción del trabajo, materiales usados, responsable técnico y firma. Se entrega en PDF por WhatsApp o correo.</small>
+        <button class="btn btn-line btn-full" onclick="openRequest('Certificación')">Pedir informe</button>
+      </div>
+
+      <div class="card">
+        <div class="cert-head"><b>¿Para qué te lo piden?</b></div>
+        <small>El protocolo de pozo a tierra suele exigirse en la inspección técnica de seguridad (ITSE), al renovar licencia de funcionamiento y en auditorías de bancos, colegios y hoteles. Si te lo están pidiendo con plazo, avísanos y priorizamos la visita.</small>
+      </div>
+
+    </div>
+  </section>
+</section>
+
+<!-- ==================== CUENTA ==================== -->
+<section class="view" id="account">
+  <header class="subtop">
+    <button class="back" onclick="showView('home','nav-home')" aria-label="Volver">‹</button>
+    <div><h2>Mis datos</h2><small>Se guardan solo en tu celular</small></div>
+  </header>
+
+  <section class="section">
+    <div class="card">
+      <div class="field"><label for="acName">Nombre o razón social</label><input id="acName" placeholder="Ejemplo: Hotel Andino"></div>
+      <div class="field"><label for="acPhone">Celular</label><input id="acPhone" inputmode="numeric" maxlength="9" placeholder="9 dígitos"></div>
+      <div class="field"><label for="acAddress">Dirección frecuente</label><textarea id="acAddress" placeholder="Dirección, distrito y referencia"></textarea></div>
+      <div class="field"><label for="acKind">Tipo de cliente</label>
+        <select id="acKind">
+          <option>Vivienda</option><option>Hotel u hospedaje</option><option>Comercio</option>
+          <option>Banco o entidad financiera</option><option>Colegio o institución</option>
+          <option>Industria u obra</option>
+        </select>
+      </div>
+      <button class="btn btn-primary btn-full" onclick="saveProfile()">Guardar mis datos</button>
+      <div class="hint" style="margin-top:9px">Se guardan únicamente en este teléfono. No se envían a ningún servidor y puedes borrarlos cuando quieras.</div>
+      <button class="btn btn-line btn-full" onclick="clearProfile()">Borrar mis datos</button>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>ENERGÉTICOS</h2><span>Contacto</span></div>
+    <div class="card">
+      <div class="account-row">
+        <div><b>WhatsApp y llamadas</b><small>942 899 919 · atención las 24 horas para emergencias.</small></div>
+        <button class="btn btn-wa" onclick="openWhatsApp()">Escribir</button>
+      </div>
+      <div class="account-row">
+        <div><b>Correo</b><small>energeticos.ryc@gmail.com</small></div>
+        <a class="btn btn-line" href="mailto:energeticos.ryc@gmail.com">Enviar</a>
+      </div>
+      <div class="account-row">
+        <div><b>Oficina</b><small>Jr. Augusto B. Leguía 563, Barrio Centenario, Independencia, Huaraz.</small></div>
+        <a class="btn btn-line" href="https://www.google.com/maps/search/?api=1&query=Jr.+Augusto+B.+Leguia+563+Independencia+Huaraz" target="_blank" rel="noopener">Mapa</a>
+      </div>
+      <div class="account-row">
+        <div><b>Instalar en mi celular</b><small>Android y iPhone: úsala como cualquier aplicación, con su propio ícono.</small></div>
+        <button class="btn btn-primary" onclick="installApp()">Instalar</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-head"><h2>Cobertura</h2><span>Zonas</span></div>
+    <div class="card">
+      <div class="account-row"><div><b>Huaraz e Independencia</b><small>Atención el mismo día. Emergencias, las 24 horas.</small></div></div>
+      <div class="account-row"><div><b>Provincias de Áncash</b><small>Se coordina fecha y se cotiza el traslado antes de la visita.</small></div></div>
+      <div class="account-row"><div><b>Otras regiones</b><small>Obras, certificaciones y mantenimientos programados con contrato.</small></div></div>
+    </div>
+  </section>
+  <p class="foot-note">TecGo · ENERGÉTICOS<br>Corporación R y C Contratistas Generales S.A.C. · RUC 20533666273</p>
+</section>
+
+<nav class="nav" aria-label="Navegación principal">
+  <button id="nav-home" class="on" onclick="showView('home','nav-home')"><span>⌂</span>Inicio</button>
+  <button id="nav-orders" onclick="showView('orders','nav-orders')"><span>☷</span>Solicitudes</button>
+  <button class="main" onclick="openRequest('Emergencia')" aria-label="Pedir auxilio">⚡</button>
+  <button id="nav-certs" onclick="showView('certs','nav-certs')"><span>✓</span>Certificados</button>
+  <button id="nav-account" onclick="showView('account','nav-account')"><span>○</span>Mis datos</button>
+</nav>
+
+<div class="toast" id="toast"></div>
+
+<div class="modal-back" id="install-modal" role="dialog" aria-modal="true" aria-labelledby="im-title">
+  <div class="modal">
+    <h3 id="im-title">Instala la app en tu celular</h3>
+    <p>Sigue estos pasos y ENERGÉTICOS quedará con su propio ícono, como cualquier aplicación.</p>
+    <div id="im-ios" style="display:none">
+      <div class="mini-step"><span>1</span><div><b>Abre esta página en Safari</b><small>En iPhone la instalación solo funciona desde Safari.</small></div></div>
+      <div class="mini-step"><span>2</span><div><b>Toca el botón Compartir <svg class="ios-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><rect x="4" y="11" width="16" height="10" rx="2"/></svg></b><small>Está en la barra inferior de Safari.</small></div></div>
+      <div class="mini-step"><span>3</span><div><b>Elige “Añadir a pantalla de inicio”</b><small>Confirma con “Añadir” y verás el logo de ENERGÉTICOS.</small></div></div>
+    </div>
+    <div id="im-android" style="display:none">
+      <div class="mini-step"><span>1</span><div><b>Abre el menú de Chrome (⋮)</b><small>Arriba a la derecha del navegador.</small></div></div>
+      <div class="mini-step"><span>2</span><div><b>Toca “Instalar app” o “Añadir a pantalla principal”</b><small>Confirma y el ícono aparecerá en tu pantalla.</small></div></div>
+    </div>
+    <button class="btn btn-dark btn-full" onclick="closeInstallModal()">Entendido</button>
+  </div>
+</div>
+
+</main>
+
+<script>
+/* =====================================================================
+   TecGo · ENERGÉTICOS — v3
+   ===================================================================== */
+const TELEFONO = "51942899919";
+
+/* --- Vitrina. Los precios deben coincidir con la lista oficial YACUSOL.
+       Si cambia un precio allá, cámbielo también aquí. --- */
+const VITRINA = [
+  {titulo:"Terma solar 120 L", etiqueta:"MÁS PEDIDA", foto:"assets/photos/foto-13.jpg",
+   desc:"Para 3 personas. Tanque interior SUS316 y garantía de 5 años.",
+   precio:"Equipo desde S/ 1,700", nota:"Paquete completo instalado: S/ 2,840",
+   consulta:"Terma solar YACUSOL 120 L"},
+  {titulo:"Terma solar 200 a 300 L", foto:"assets/photos/foto-13.jpg",
+   desc:"Familias grandes, hospedajes y hoteles. Agua caliente sin subir el recibo de luz.",
+   precio:"Equipo desde S/ 2,550", nota:"Consulta el modelo según cuántas personas son",
+   consulta:"Terma solar YACUSOL de 200 a 300 L"},
+  {titulo:"Paneles fotovoltaicos", foto:"assets/photos/foto-01.jpg",
+   desc:"Genera tu propia energía. Dimensionamos el sistema con tu recibo de luz.",
+   precio:"Cotización a medida", nota:"Envíanos tu recibo por WhatsApp",
+   consulta:"Sistema de paneles fotovoltaicos"},
+  {titulo:"Protocolo de pozo a tierra", foto:"assets/photos/foto-16.jpg",
+   desc:"Medición certificada y protocolo firmado por ingeniero CIP para tu ITSE.",
+   precio:"Cotización según local", nota:"Incluye informe y alerta de renovación",
+   consulta:"Protocolo de pozo a tierra con medición"}
+];
+
+const sintomas = {
+  "Electricidad":{
+    label:"Síntomas eléctricos",
+    help:"Si hay humo, chispas u olor a quemado, no manipules el tablero: baja la llave general y pide emergencia.",
+    items:["Salta la llave térmica","No hay luz","Chispas en tomacorriente","Olor a quemado","Tablero caliente","Necesito una instalación"]},
+  "Agua caliente":{
+    label:"Síntomas de la terma o ducha",
+    help:"Indica la marca, el tipo de terma y si es eléctrica, a gas o solar.",
+    items:["No calienta","El agua sale tibia","Fuga en la terma","Dispara la llave","Baja presión","Mantenimiento anual"]},
+  "Sanitarias":{
+    label:"Síntomas sanitarios",
+    help:"Indica si la fuga es visible u oculta y si está en baño, cocina, tanque o cisterna.",
+    items:["Hay una fuga","Baja presión","Desagüe atorado","Mal olor","La bomba no prende","Cisterna o tanque"]},
+  "Pozo a tierra":{
+    label:"¿Qué necesitas del pozo a tierra?",
+    help:"Para comercios, bancos, hoteles e instituciones que requieren medición, protocolo o mantenimiento.",
+    items:["Medición anual","Resistencia muy alta","Necesito el protocolo","Tengo un pozo existente","Pozo nuevo","Me lo piden para la ITSE"]},
+  "Certificación":{
+    label:"Tipo de certificado",
+    help:"Los certificados requieren datos del local, visita, medición y firma del responsable técnico.",
+    items:["Pozo a tierra","Luxometría","Conformidad eléctrica","Informe técnico","Renovación anual","Cotización formal"]},
+  "Solar":{
+    label:"Síntomas del sistema solar",
+    help:"Indica si es térmico o fotovoltaico, la marca y la capacidad si la conoces.",
+    items:["No calienta","Fuga en la válvula","Baja presión","Panel sucio","Falla el inversor","Mantenimiento"]},
+  "Pintura":{
+    label:"¿Qué necesitas pintar?",
+    help:"Indica el área aproximada, si es interior o exterior y si hay humedad o filtración.",
+    items:["Pintura interior","Pintura exterior","Humedad","Filtración","Resane","Solo cotización"]},
+  "Otros servicios":{
+    label:"Cuéntanos qué necesitas",
+    help:"Usa esta opción si no encuentras el rubro. ENERGÉTICOS clasificará tu solicitud.",
+    items:["Soldadura","Puertas o ventanas","Cerrajería","Estructuras","Mantenimiento general","Otro"]}
+};
+const alias = {"Emergencia":"Electricidad"};
+
+const $ = s => document.querySelector(s);
+const $$ = s => [...document.querySelectorAll(s)];
+
+/* ---------- Navegación ---------- */
+function showView(viewId, navId){
+  $$(".view").forEach(v => v.classList.remove("active"));
+  $("#"+viewId).classList.add("active");
+  $$(".nav button").forEach(b => b.classList.remove("on"));
+  if(navId) $("#"+navId)?.classList.add("on");
+  if(viewId === "orders") renderOrders();
+  window.scrollTo({top:0, behavior:"smooth"});
+}
+
+function openRequest(servicio){
+  const destino = alias[servicio] || servicio;
+  $("#request-title").textContent = servicio === "Emergencia" ? "Emergencia técnica" : servicio;
+  if(sintomas[destino]) $("#service").value = destino;
+  $("#urgency").value = servicio === "Emergencia" ? "Emergencia" : "Hoy";
+  renderSymptoms($("#service").value);
+  cargarPerfilEnFormulario();
+  showView("request", null);
+}
+
+function renderSymptoms(servicio){
+  const c = sintomas[servicio] || sintomas["Otros servicios"];
+  $("#symptom-label").textContent = c.label;
+  $("#symptom-help").textContent = c.help;
+  $("#symptoms").innerHTML = c.items.map(i => `<button type="button" class="chip">${i}</button>`).join("");
+}
+$("#symptoms").addEventListener("click", e => {
+  const chip = e.target.closest(".chip");
+  if(chip) chip.classList.toggle("active");
+});
+$("#service").addEventListener("change", e => renderSymptoms(e.target.value));
+const symptomsSelected = () => $$(".chip.active").map(c => c.textContent.trim());
+
+/* ---------- Vitrina ---------- */
+$("#shopScroll").innerHTML = VITRINA.map(p => `
+  <article class="product">
+    ${p.etiqueta ? `<span class="ribbon">${p.etiqueta}</span>` : ""}
+    <img src="${p.foto}" alt="${p.titulo}" loading="lazy">
+    <div class="p-body">
+      <b>${p.titulo}</b>
+      <span class="p-desc">${p.desc}</span>
+      <span class="p-price">${p.precio}</span>
+      <span class="p-note">${p.nota}</span>
+      <button class="btn btn-primary" onclick="quoteProduct(${JSON.stringify(p.consulta)})">Cotizar</button>
+    </div>
+  </article>`).join("");
+
+function quoteProduct(producto){
+  abrirWA(`Hola ENERGÉTICOS, vi en TecGo: ${producto}. Quiero cotizarlo.\nMi distrito o dirección: \nMi consulta: `);
+}
+function abrirWA(texto){
+  window.open(`https://wa.me/${TELEFONO}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+}
+function openWhatsApp(){
+  abrirWA("Hola ENERGÉTICOS, quiero solicitar un servicio por TecGo.");
+}
+
+/* ---------- Fotos ---------- */
+$("#photos").addEventListener("change", e => {
+  const cont = $("#photo-preview");
+  cont.innerHTML = "";
+  [...e.target.files].slice(0,6).forEach(f => {
+    const img = document.createElement("img");
+    img.className = "photo-thumb";
+    img.src = URL.createObjectURL(f);
+    img.onload = () => URL.revokeObjectURL(img.src);
+    cont.appendChild(img);
+  });
+});
+
+/* ---------- Validación y envío ---------- */
+function marcarError(id, hay){
+  $("#"+id).classList.toggle("error", hay);
+  return !hay;
+}
+function buildRequest(){
+  const nombre  = $("#client").value.trim();
+  const celular = $("#phone").value.replace(/\D/g,"");
+  const desc    = $("#description").value.trim();
+  const dir     = $("#address").value.trim();
+
+  let ok = true;
+  ok = marcarError("f-client", nombre.length < 3) && ok;
+  ok = marcarError("f-phone", !/^9\d{8}$/.test(celular)) && ok;
+  ok = marcarError("f-description", desc.length < 10) && ok;
+  ok = marcarError("f-address", dir.length < 6) && ok;
+
+  if(!ok){
+    showToast("Falta completar algunos datos.");
+    document.querySelector(".field.error")?.scrollIntoView({behavior:"smooth", block:"center"});
+    return;
+  }
+
+  const d = {
+    numero: siguienteNumero(),
+    fecha: new Date().toISOString(),
+    cliente: nombre, celular,
+    tipo: $("#kind").value,
+    servicio: $("#service").value,
+    urgencia: $("#urgency").value,
+    sintomas: symptomsSelected().join(", ") || "Sin especificar",
+    descripcion: desc,
+    direccion: dir,
+    fotos: $("#photos").files.length
+  };
+
+  const riesgo = d.urgencia === "Emergencia" ? ["ROJO","rojo"]
+              : d.urgencia === "Hoy" ? ["ÁMBAR","ambar"] : ["VERDE","verde"];
+
+  $("#summary").innerHTML = `
+    <b>Solicitud N° ${d.numero}</b> &nbsp;<span class="riesgo ${riesgo[1]}">${riesgo[0]}</span><br>
+    Servicio: <b>${d.servicio}</b> · ${d.urgencia}<br>
+    Síntomas: ${d.sintomas}<br>
+    Cliente: ${d.cliente} · ${d.celular}<br>
+    ${d.fotos ? `Fotos preparadas: ${d.fotos} — recuerda adjuntarlas en el chat.<br>` : ""}
+    Guardada en “Mis solicitudes”.`;
+
+  guardarSolicitud(d);
+  guardarPerfilDesdeFormulario();
+  abrirWA(mensajeWA(d));
+  showToast(`Solicitud N° ${d.numero} enviada.`);
+}
+
+function mensajeWA(d){
+  return [
+    "Hola ENERGÉTICOS, solicito atención por TecGo.",
+    "",
+    `Solicitud N°: ${d.numero}`,
+    `Cliente: ${d.cliente}`,
+    `Celular: ${d.celular}`,
+    `Tipo: ${d.tipo}`,
+    `Servicio: ${d.servicio}`,
+    `Urgencia: ${d.urgencia}`,
+    `Síntomas: ${d.sintomas}`,
+    `Descripción: ${d.descripcion}`,
+    `Dirección: ${d.direccion}`,
+    d.fotos ? `Adjunto ${d.fotos} foto(s) en este chat.` : ""
+  ].filter(Boolean).join("\n");
+}
+
+/* ---------- Almacenamiento local ---------- */
+const LS = {
+  get(k, def){ try{ return JSON.parse(localStorage.getItem(k)) ?? def; }catch(e){ return def; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(e){} },
+  del(k){ try{ localStorage.removeItem(k); }catch(e){} }
+};
+function siguienteNumero(){
+  const n = LS.get("tecgo_correlativo", 100) + 1;
+  LS.set("tecgo_correlativo", n);
+  return String(n).padStart(4,"0");
+}
+function guardarSolicitud(d){
+  const lista = LS.get("tecgo_solicitudes", []);
+  lista.unshift(d);
+  LS.set("tecgo_solicitudes", lista.slice(0,30));
+}
+function renderOrders(){
+  const lista = LS.get("tecgo_solicitudes", []);
+  if(!lista.length){
+    $("#orders-list").innerHTML = `<div class="card empty">
+      <div class="big">☷</div>
+      <b>Todavía no has enviado solicitudes</b>
+      <p style="margin-top:6px">Cuando envíes una por WhatsApp quedará guardada aquí, con su número, para que puedas consultarla o reenviarla.</p>
+    </div>`;
+    return;
+  }
+  $("#orders-list").innerHTML = lista.map((d,i) => {
+    const f = new Date(d.fecha);
+    const fecha = f.toLocaleDateString("es-PE",{day:"2-digit",month:"short",year:"numeric"}) +
+                  " · " + f.toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"});
+    const pill = d.urgencia === "Emergencia" ? "bad" : d.urgencia === "Hoy" ? "warn" : "ok";
+    return `<article class="order">
+      <div class="order-head"><b>N° ${d.numero} · ${d.servicio}</b><span>${fecha}</span></div>
+      <span class="pill ${pill}">${d.urgencia}</span>
+      <p><b>Síntomas:</b> ${d.sintomas}</p>
+      <p>${d.descripcion}</p>
+      <p><b>Dirección:</b> ${d.direccion}</p>
+      <div class="acts">
+        <button class="btn btn-wa" onclick="reenviar(${i})">Reenviar</button>
+        <button class="btn btn-line" onclick="borrarSolicitud(${i})">Borrar</button>
+      </div>
+    </article>`;
+  }).join("");
+}
+function reenviar(i){
+  const d = LS.get("tecgo_solicitudes", [])[i];
+  if(d) abrirWA("Consulta sobre mi solicitud ya enviada.\n\n" + mensajeWA(d));
+}
+function borrarSolicitud(i){
+  const lista = LS.get("tecgo_solicitudes", []);
+  lista.splice(i,1);
+  LS.set("tecgo_solicitudes", lista);
+  renderOrders();
+  showToast("Solicitud borrada de este celular.");
+}
+
+/* ---------- Perfil ---------- */
+function guardarPerfilDesdeFormulario(){
+  LS.set("tecgo_perfil", {
+    nombre: $("#client").value.trim(),
+    celular: $("#phone").value.replace(/\D/g,""),
+    direccion: $("#address").value.trim(),
+    tipo: $("#kind").value
+  });
+}
+function cargarPerfilEnFormulario(){
+  const p = LS.get("tecgo_perfil", null);
+  if(!p) return;
+  if(!$("#client").value) $("#client").value = p.nombre || "";
+  if(!$("#phone").value) $("#phone").value = p.celular || "";
+  if(!$("#address").value) $("#address").value = p.direccion || "";
+  if(p.tipo) $("#kind").value = p.tipo;
+}
+function saveProfile(){
+  const cel = $("#acPhone").value.replace(/\D/g,"");
+  if(cel && !/^9\d{8}$/.test(cel)){ showToast("El celular debe tener 9 dígitos y empezar en 9."); return; }
+  LS.set("tecgo_perfil", {
+    nombre: $("#acName").value.trim(),
+    celular: cel,
+    direccion: $("#acAddress").value.trim(),
+    tipo: $("#acKind").value
+  });
+  showToast("Datos guardados en tu celular.");
+}
+function clearProfile(){
+  LS.del("tecgo_perfil");
+  $("#acName").value = ""; $("#acPhone").value = ""; $("#acAddress").value = "";
+  showToast("Datos borrados.");
+}
+function cargarPerfilEnCuenta(){
+  const p = LS.get("tecgo_perfil", null);
+  if(!p) return;
+  $("#acName").value = p.nombre || "";
+  $("#acPhone").value = p.celular || "";
+  $("#acAddress").value = p.direccion || "";
+  if(p.tipo) $("#acKind").value = p.tipo;
+}
+
+/* ---------- Vigencia del protocolo ---------- */
+function calcVigencia(){
+  const v = $("#certDate").value;
+  const caja = $("#certResult");
+  if(!v){ showToast("Elige la fecha de tu último protocolo."); return; }
+  const desde = new Date(v + "T00:00:00");
+  const vence = new Date(desde); vence.setFullYear(vence.getFullYear() + 1);
+  const dias = Math.ceil((vence - new Date()) / 86400000);
+  const fVence = vence.toLocaleDateString("es-PE",{day:"2-digit",month:"long",year:"numeric"});
+
+  let estado, color;
+  if(dias < 0){ estado = `Tu protocolo <b>venció</b> hace ${Math.abs(dias)} día(s).`; color = "var(--alerta)"; }
+  else if(dias <= 60){ estado = `Te quedan <b>${dias} día(s)</b>. Conviene programar la medición ahora.`; color = "var(--warn)"; }
+  else { estado = `Vigente. Te quedan <b>${dias} día(s)</b>.`; color = "var(--ok)"; }
+
+  caja.innerHTML = `<b style="color:${color}">Vence el ${fVence}</b><br>${estado}
+    <br><small>La medición anual es la práctica exigida habitualmente para la ITSE. Confirma el plazo con tu municipalidad.</small>`;
+  caja.classList.remove("hide");
+}
+
+/* ---------- Avisos ---------- */
+function showToast(t){
+  const el = $("#toast");
+  el.textContent = t;
+  el.classList.add("show");
+  clearTimeout(window._toast);
+  window._toast = setTimeout(() => el.classList.remove("show"), 3000);
+}
+
+/* ---------- Titular rotativo ---------- */
+const titulares = [
+  "Tu técnico correcto, sin perder tiempo.",
+  "¿Se fue la luz? Llegamos con la solución.",
+  "Agua caliente todos los días con termas YACUSOL.",
+  "Certificados para tu licencia, firmados por ingeniero CIP.",
+  "Atendemos hogares, hoteles, bancos y negocios."
+];
+if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  let idx = 0;
+  setInterval(() => {
+    const h = $("#hero-line");
+    if(!h || !$("#home").classList.contains("active")) return;
+    h.classList.add("fade");
+    setTimeout(() => {
+      idx = (idx + 1) % titulares.length;
+      h.textContent = titulares[idx];
+      h.classList.remove("fade");
+    }, 320);
+  }, 4600);
+}
+
+/* ---------- Contadores ---------- */
+function animarContadores(){
+  $$("[data-count]").forEach(el => {
+    const meta = parseInt(el.dataset.count, 10);
+    const suf = el.dataset.suffix || "";
+    let v = 0;
+    const paso = Math.max(1, Math.round(meta / 36));
+    const t = setInterval(() => {
+      v += paso;
+      if(v >= meta){ v = meta; clearInterval(t); }
+      el.textContent = v + suf;
+    }, 40);
+  });
+}
+
+/* ---------- Instalación PWA ---------- */
+let deferredInstall = null;
+const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
+const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
+
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault();
+  deferredInstall = e;
+  if(!isStandalone) $("#install-banner").classList.add("show");
+});
+if(isIOS && !isStandalone){
+  window.addEventListener("load", () => $("#install-banner").classList.add("show"));
+}
+function installApp(){
+  if(deferredInstall){
+    deferredInstall.prompt();
+    deferredInstall.userChoice.then(c => {
+      if(c.outcome === "accepted"){
+        $("#install-banner").classList.remove("show");
+        showToast("Listo. ENERGÉTICOS quedó instalada en tu celular.");
       }
-    };
-
-    const serviceAliases = {
-      "Emergencia": "Electricidad",
-      "Diagnostico con fotos": "Electricidad",
-      "Luxometria": "Certificacion"
-    };
-
-    function showView(viewId, navId){
-      document.querySelectorAll(".view").forEach(view => view.classList.remove("active"));
-      document.getElementById(viewId).classList.add("active");
-      document.querySelectorAll(".nav button").forEach(item => item.classList.remove("on"));
-      if(navId) document.getElementById(navId)?.classList.add("on");
-      window.scrollTo({top:0,behavior:"smooth"});
-    }
-
-    function openRequest(service){
-      document.getElementById("request-title").textContent = service === "Emergencia" ? "Emergencia tecnica" : service;
-      const serviceSelect = document.getElementById("service");
-      const targetService = serviceAliases[service] || service;
-      [...serviceSelect.options].forEach(option => {
-        if(targetService.toLowerCase().includes(option.value.toLowerCase())) serviceSelect.value = option.value;
-      });
-      document.getElementById("urgency").value = service === "Emergencia" ? "Emergencia" : "Hoy";
-      renderSymptoms(serviceSelect.value);
-      showView("request", null);
-    }
-
-    function renderSymptoms(service){
-      const config = serviceSymptoms[service] || serviceSymptoms["Otros servicios"];
-      const container = document.getElementById("symptoms");
-      document.getElementById("symptom-label").textContent = config.label;
-      document.getElementById("symptom-help").textContent = config.help;
-      container.innerHTML = config.items.map(item => `<button type="button" class="chip">${item}</button>`).join("");
-    }
-
-    function selectedSymptoms(){
-      return [...document.querySelectorAll(".chip.active")].map(chip => chip.textContent.trim());
-    }
-
-    document.getElementById("symptoms").addEventListener("click", event => {
-      const chip = event.target.closest(".chip");
-      if(!chip) return;
-      chip.classList.toggle("active");
+      deferredInstall = null;
     });
+    return;
+  }
+  $("#im-ios").style.display = isIOS ? "block" : "none";
+  $("#im-android").style.display = isIOS ? "none" : "block";
+  $("#install-modal").classList.add("show");
+}
+function closeInstallModal(){ $("#install-modal").classList.remove("show"); }
+$("#install-modal").addEventListener("click", e => { if(e.target.id === "install-modal") closeInstallModal(); });
+window.addEventListener("appinstalled", () => {
+  $("#install-banner").classList.remove("show");
+  showToast("Listo. ENERGÉTICOS quedó instalada en tu celular.");
+});
 
-    document.getElementById("service").addEventListener("change", event => {
-      renderSymptoms(event.target.value);
-    });
-
-    function buildRequest(){
-      const data = {
-        cliente: document.getElementById("client").value || "Por completar",
-        celular: document.getElementById("phone").value || "Por completar",
-        tipo: document.getElementById("kind").value,
-        servicio: document.getElementById("service").value,
-        urgencia: document.getElementById("urgency").value,
-        sintomas: selectedSymptoms().join(", ") || "Por describir",
-        descripcion: document.getElementById("description").value || "Por completar",
-        direccion: document.getElementById("address").value || "Por completar"
-      };
-      const risk = data.urgencia === "Emergencia" ? "ROJO" : data.urgencia === "Hoy" ? "AMARILLO" : "VERDE";
-      const summary = `Prediagnostico referencial<br>
-        Riesgo: <b>${risk}</b><br>
-        Servicio: <b>${data.servicio}</b><br>
-        Sintomas: ${data.sintomas}<br>
-        Cliente: ${data.cliente}<br>
-        Accion: revisar fotos, confirmar seguridad y asignar tecnico.`;
-      document.getElementById("summary").innerHTML = summary;
-      const message = `Hola ENERGETICOS, solicito atencion TecGo.%0A%0ACliente: ${encodeURIComponent(data.cliente)}%0ACelular: ${encodeURIComponent(data.celular)}%0ATipo: ${encodeURIComponent(data.tipo)}%0AServicio: ${encodeURIComponent(data.servicio)}%0AUrgencia: ${encodeURIComponent(data.urgencia)}%0ASintomas: ${encodeURIComponent(data.sintomas)}%0ADescripcion: ${encodeURIComponent(data.descripcion)}%0ADireccion: ${encodeURIComponent(data.direccion)}`;
-      window.open(`https://wa.me/${companyPhone}?text=${message}`, "_blank", "noopener");
-    }
-
-    function openWhatsApp(){
-      window.open(`https://wa.me/${companyPhone}?text=Hola%20ENERGETICOS%2C%20quiero%20solicitar%20un%20servicio%20por%20TecGo.`, "_blank", "noopener");
-    }
-
-    function showToast(text){
-      const toast = document.getElementById("toast");
-      toast.textContent = text;
-      toast.classList.add("show");
-      clearTimeout(window.toastTimer);
-      window.toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
-    }
-
-    if("serviceWorker" in navigator && location.protocol.startsWith("http")){
-      window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
-    }
-
-    /* ===== Titular rotativo de ventas ===== */
-    const heroLines = [
-      "Tu técnico correcto, sin perder tiempo.",
-      "¿Se fue la luz? Llegamos con la solución.",
-      "Agua caliente todos los días con termas YACUSOL.",
-      "Certificados para tu licencia, firmados por ingeniero CIP.",
-      "Atendemos hogares, hoteles, bancos y negocios. 24/7."
-    ];
-    let heroIndex = 0;
-    setInterval(() => {
-      const h = document.getElementById("hero-line");
-      if(!h) return;
-      h.classList.add("fade");
-      setTimeout(() => {
-        heroIndex = (heroIndex + 1) % heroLines.length;
-        h.textContent = heroLines[heroIndex];
-        h.classList.remove("fade");
-      }, 350);
-    }, 4200);
-
-    /* ===== Contadores animados ===== */
-    function animateCounters(){
-      document.querySelectorAll("[data-count]").forEach(el => {
-        const target = parseInt(el.dataset.count, 10);
-        let value = 0;
-        const step = Math.max(1, Math.round(target / 36));
-        const timer = setInterval(() => {
-          value += step;
-          if(value >= target){ value = target; clearInterval(timer); }
-          el.textContent = value + (target === 30 ? "+" : "");
-        }, 40);
-      });
-    }
-    window.addEventListener("load", animateCounters);
-
-    /* ===== Cotizar producto (vitrina) ===== */
-    function quoteProduct(producto){
-      const msg = "Hola ENERGÉTICOS, vi en la app TecGo: " + producto +
-        ". Quiero cotizarlo.%0AMi distrito o dirección: %0AMi consulta: ";
-      window.open("https://wa.me/" + companyPhone + "?text=" + msg.replace(/ /g, "%20"), "_blank", "noopener");
-    }
-
-    /* ===== Instalación PWA: Android (prompt nativo) + iPhone (instrucciones) ===== */
-    let deferredInstall = null;
-    const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent);
-    const isStandalone = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone === true;
-
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredInstall = e;
-      if(!isStandalone) document.getElementById("install-banner").classList.add("show");
-    });
-
-    if(isIOS && !isStandalone){
-      window.addEventListener("load", () => document.getElementById("install-banner").classList.add("show"));
-    }
-
-    function installApp(){
-      if(deferredInstall){
-        deferredInstall.prompt();
-        deferredInstall.userChoice.then(choice => {
-          if(choice.outcome === "accepted"){
-            document.getElementById("install-banner").classList.remove("show");
-            showToast("¡Listo! ENERGÉTICOS quedó instalada en tu celular.");
-          }
-          deferredInstall = null;
-        });
-        return;
-      }
-      // Sin prompt nativo: mostrar instrucciones según el equipo
-      document.getElementById("im-ios").style.display = isIOS ? "block" : "none";
-      document.getElementById("im-android").style.display = isIOS ? "none" : "block";
-      document.getElementById("install-modal").classList.add("show");
-    }
-    function closeInstallModal(){
-      document.getElementById("install-modal").classList.remove("show");
-    }
-    document.getElementById("install-modal").addEventListener("click", (e) => {
-      if(e.target.id === "install-modal") closeInstallModal();
-    });
-
-    window.addEventListener("appinstalled", () => {
-      document.getElementById("install-banner").classList.remove("show");
-      showToast("¡Listo! ENERGÉTICOS quedó instalada en tu celular.");
-    });
-
-    renderSymptoms(document.getElementById("service").value);
-  </script>
+/* ---------- Arranque ---------- */
+if("serviceWorker" in navigator && location.protocol.startsWith("http")){
+  window.addEventListener("load", () => navigator.serviceWorker.register("./sw.js").catch(() => {}));
+}
+renderSymptoms($("#service").value);
+cargarPerfilEnCuenta();
+renderOrders();
+window.addEventListener("load", animarContadores);
+</script>
 </body>
 </html>

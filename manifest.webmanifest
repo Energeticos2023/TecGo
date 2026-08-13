@@ -1,12 +1,12 @@
 {
   "name": "TecGo · ENERGÉTICOS",
-  "short_name": "ENERGÉTICOS",
-  "description": "Asistencia técnica, diagnóstico guiado y despacho rápido en Huaraz e Independencia. Las 24 horas.",
+  "short_name": "TecGo",
+  "description": "Asistencia técnica eléctrica, sanitaria y solar en Huaraz e Independencia. Diagnóstico guiado, certificados y atención las 24 horas.",
   "start_url": "./",
   "scope": "./",
   "display": "standalone",
-  "background_color": "#f4f7fb",
-  "theme_color": "#0e2a47",
+  "background_color": "#F3F7FC",
+  "theme_color": "#0C2340",
   "orientation": "portrait",
   "lang": "es-PE",
   "icons": [

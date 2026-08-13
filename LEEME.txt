@@ -1,0 +1,28 @@
+TecGo - ENERGETICOS  (version 3)
+Repositorio: energeticos2023.github.io/TecGo
+
+COMO INSTALAR
+1. Suba estos 3 archivos a la raiz del repositorio, reemplazando los actuales:
+     index.html
+     sw.js
+     manifest.webmanifest
+2. NO toque las carpetas assets/ ni icons/ : el nuevo codigo usa las mismas rutas.
+3. Listo. GitHub Pages publica el cambio en 1-2 minutos.
+
+IMPORTANTE - LOS CLIENTES YA INSTALADOS
+El sw.js anterior usaba "cache primero". Por eso, quien ya tenia TecGo instalada
+en su celular NUNCA veia las actualizaciones. El nuevo sw.js usa "red primero,
+cache como respaldo": ahora si veran cada cambio que usted publique.
+
+PRECIOS DE LA VITRINA
+En index.html busque el comentario:  const VITRINA = [
+Ahi estan los precios que aparecen en la seccion "Productos y servicios".
+Deben coincidir siempre con la lista oficial YACUSOL. Si cambia un precio en
+la web o en la app de termas, cambielo tambien aqui.
+
+DATOS DE LOS CLIENTES
+Las solicitudes y los datos personales se guardan SOLO en el celular de cada
+cliente (almacenamiento local del navegador). No se envian a ningun servidor
+y usted no los recibe automaticamente: los recibe por WhatsApp como siempre.
+
+Corporacion R y C Contratistas Generales S.A.C. - ENERGETICOS
