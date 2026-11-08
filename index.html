@@ -709,7 +709,7 @@ function quoteProduct(producto){
   abrirWA(`Hola ENERGÉTICOS, vi en TecGo: ${producto}. Quiero cotizarlo.\nMi distrito o dirección: \nMi consulta: `);
 }
 function abrirWA(texto){
-  window.open(`https://wa.me/${TELEFONO}?text=${encodeURIComponent(texto)}`, "_blank", "noopener");
+  return !!window.open(`https://wa.me/${TELEFONO}?text=${encodeURIComponent(texto)}`, "_blank", "noopener,noreferrer");
 }
 function openWhatsApp(){
   abrirWA("Hola ENERGÉTICOS, quiero solicitar un servicio por TecGo.");
@@ -767,18 +767,24 @@ function buildRequest(){
   const riesgo = d.urgencia === "Emergencia" ? ["ROJO","rojo"]
               : d.urgencia === "Hoy" ? ["ÁMBAR","ambar"] : ["VERDE","verde"];
 
-  $("#summary").innerHTML = `
-    <b>Solicitud N° ${d.numero}</b> &nbsp;<span class="riesgo ${riesgo[1]}">${riesgo[0]}</span><br>
-    Servicio: <b>${d.servicio}</b> · ${d.urgencia}<br>
-    Síntomas: ${d.sintomas}<br>
-    Cliente: ${d.cliente} · ${d.celular}<br>
-    ${d.fotos ? `Fotos preparadas: ${d.fotos} — recuerda adjuntarlas en el chat.<br>` : ""}
-    Guardada en “Mis solicitudes”.`;
-
+  const summary = $("#summary");
+  summary.replaceChildren();
+  function line(label,value){
+    const p=document.createElement("p"),strong=document.createElement("strong");
+    strong.textContent=label+": ";
+    p.append(strong,document.createTextNode(String(value)));
+    summary.appendChild(p);
+  }
+  line("Solicitud local Nº",d.numero);
+  line("Estado","Preparada en este navegador; el envío no está confirmado");
+  line("Servicio",d.servicio+" · "+d.urgencia);
+  line("Síntomas",d.sintomas);
+  line("Cliente",d.cliente+" · "+d.celular);
+  if(d.fotos)line("Fotos",d.fotos+" foto(s) por adjuntar en WhatsApp");
   guardarSolicitud(d);
   guardarPerfilDesdeFormulario();
-  abrirWA(mensajeWA(d));
-  showToast(`Solicitud N° ${d.numero} enviada.`);
+  const opened=abrirWA(mensajeWA(d));
+  showToast(opened?"WhatsApp abierto. Confirma el envío en el chat.":"Solicitud guardada localmente. Habilita las ventanas emergentes para abrir WhatsApp.");
 }
 
 function mensajeWA(d){
@@ -815,36 +821,42 @@ function guardarSolicitud(d){
   LS.set("tecgo_solicitudes", lista.slice(0,30));
 }
 function renderOrders(){
-  const lista = LS.get("tecgo_solicitudes", []);
+  const lista=LS.get("tecgo_solicitudes",[]);
+  const root=$("#orders-list");root.replaceChildren();
   if(!lista.length){
-    $("#orders-list").innerHTML = `<div class="card empty">
-      <div class="big">☷</div>
-      <b>Todavía no has enviado solicitudes</b>
-      <p style="margin-top:6px">Cuando envíes una por WhatsApp quedará guardada aquí, con su número, para que puedas consultarla o reenviarla.</p>
-    </div>`;
-    return;
+    const box=document.createElement("div");
+    box.className="card empty";
+    const title=document.createElement("b");title.textContent="Todavía no hay solicitudes preparadas";
+    const p=document.createElement("p");p.textContent="Cuando prepares una solicitud, quedará guardada en este navegador. El envío por WhatsApp requiere confirmación manual.";
+    box.append(title,p);root.appendChild(box);return;
   }
-  $("#orders-list").innerHTML = lista.map((d,i) => {
-    const f = new Date(d.fecha);
-    const fecha = f.toLocaleDateString("es-PE",{day:"2-digit",month:"short",year:"numeric"}) +
-                  " · " + f.toLocaleTimeString("es-PE",{hour:"2-digit",minute:"2-digit"});
-    const pill = d.urgencia === "Emergencia" ? "bad" : d.urgencia === "Hoy" ? "warn" : "ok";
-    return `<article class="order">
-      <div class="order-head"><b>N° ${d.numero} · ${d.servicio}</b><span>${fecha}</span></div>
-      <span class="pill ${pill}">${d.urgencia}</span>
-      <p><b>Síntomas:</b> ${d.sintomas}</p>
-      <p>${d.descripcion}</p>
-      <p><b>Dirección:</b> ${d.direccion}</p>
-      <div class="acts">
-        <button class="btn btn-wa" onclick="reenviar(${i})">Reenviar</button>
-        <button class="btn btn-line" onclick="borrarSolicitud(${i})">Borrar</button>
-      </div>
-    </article>`;
-  }).join("");
+  lista.forEach((d,i)=>{
+    const article=document.createElement("article");article.className="order";
+    const head=document.createElement("div");head.className="order-head";
+    const title=document.createElement("b");
+    title.textContent="Nº "+String(d.numero||"Local")+" · "+String(d.servicio||"Servicio");
+    const time=document.createElement("span");const date=new Date(d.fecha);
+    time.textContent=Number.isNaN(date.getTime())?"Fecha sin verificar":date.toLocaleString("es-PE");
+    head.append(title,time);article.append(head);
+    const level=document.createElement("span");level.className="pill "+(d.urgencia==="Emergencia"?"bad":d.urgencia==="Hoy"?"warn":"ok");
+    level.textContent=String(d.urgencia||"Por confirmar");article.append(level);
+    for(const [label,value] of [["Síntomas",d.sintomas],["Descripción",d.descripcion],["Dirección",d.direccion]]){
+      const p=document.createElement("p"),name=document.createElement("strong");
+      name.textContent=label+": ";
+      p.append(name,document.createTextNode(String(value||"Sin especificar")));
+      article.append(p);
+    }
+    const buttons=document.createElement("div");buttons.className="acts";
+    const resend=document.createElement("button");resend.className="btn btn-wa";
+    resend.textContent="Abrir WhatsApp";resend.type="button";resend.addEventListener("click",()=>reenviar(i));
+    const remove=document.createElement("button");remove.className="btn btn-line";
+    remove.textContent="Borrar de este dispositivo";remove.type="button";remove.addEventListener("click",()=>borrarSolicitud(i));
+    buttons.append(resend,remove);article.append(buttons);root.append(article);
+  });
 }
 function reenviar(i){
   const d = LS.get("tecgo_solicitudes", [])[i];
-  if(d) abrirWA("Consulta sobre mi solicitud ya enviada.\n\n" + mensajeWA(d));
+  if(d) abrirWA("Quiero consultar una solicitud preparada previamente.\n\n" + mensajeWA(d));
 }
 function borrarSolicitud(i){
   const lista = LS.get("tecgo_solicitudes", []);
