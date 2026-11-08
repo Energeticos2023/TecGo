@@ -13,6 +13,8 @@ assert(!source.includes('$("#summary").innerHTML'),"Volvió el sumidero vulnerab
 assert(!source.includes('$("#orders-list").innerHTML = lista.map'),"Volvió el sumidero vulnerable en historial");
 assert(!source.includes("Solicitud N° "+String.fromCharCode(36)+"{d.numero} enviada."),"La app afirma un envío WhatsApp no acreditado");
 assert(source.includes('WhatsApp abierto. Confirma el envío'),"Falta aviso de estado no comprobado");
+assert(source.includes("crypto.randomUUID()"),"Falta referencia única del navegador");
+assert(!source.includes('LS.get("tecgo_correlativo"'),"Persisten correlativos repetibles por navegador");
 const i=source.indexOf('function renderOrders(){'),j=source.indexOf('function reenviar(i)',i);
 assert(i>=0&&j>i,"No se encuentra historial");
 assert(!source.slice(i,j).includes('innerHTML'),"El historial usa HTML dinámico");
