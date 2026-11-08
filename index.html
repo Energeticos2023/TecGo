@@ -811,9 +811,8 @@ const LS = {
   del(k){ try{ localStorage.removeItem(k); }catch(e){} }
 };
 function siguienteNumero(){
-  const n = LS.get("tecgo_correlativo", 100) + 1;
-  LS.set("tecgo_correlativo", n);
-  return String(n).padStart(4,"0");
+  // Referencia global aleatoria. No es correlativo de servidor ni confirma recepción.
+  return "TG-"+crypto.randomUUID();
 }
 function guardarSolicitud(d){
   const lista = LS.get("tecgo_solicitudes", []);
